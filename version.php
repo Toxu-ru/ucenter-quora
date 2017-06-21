@@ -1,16 +1,16 @@
 <?php
 /*
 +--------------------------------------------------------------------------
-|   WeCenter [#RELEASE_VERSION#]
+|   WeCenter 
 |   ========================================
 |   by WeCenter Software
 |   © 2011 - 2014 WeCenter. All Rights Reserved
 |   http://www.wecenter.com
+|   and dev Evg - toxu.ru
 |   ========================================
-|   Support: WeCenter@qq.com
 |
 +---------------------------------------------------------------------------
 */
 
-define('G_VERSION', '3.1.9');
-define('G_VERSION_BUILD', '20160523');
+define('G_VERSION', '3.1.9.1');
+define('G_VERSION_BUILD', '20170621');
