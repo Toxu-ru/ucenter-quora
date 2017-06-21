@@ -1,4 +1,4 @@
-/* 全局样式 */
+/* Global Style */
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; -webkit-touch-callout: none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 html { background: #fff url(default/img/bg.gif) fixed; }
 body { font: 14px/22px 'Helvetica Neue', 'STHeiti', 'Microsoft YaHei', Helvetica, Arial, sans-serif; line-height: 150%; overflow: hidden; margin: 0; padding: 0; -webkit-hyphens: auto; }
@@ -9,7 +9,7 @@ a:hover { text-decoration: none; color: #5d6c79; }
 input, select, textarea { font: normal 12px Verdana, Arial; }
 .hide { display: none; }
 
-/* 左侧内容导航 */
+/* Содержимое левой панели навигации */
 
 .aw-reader-side { position: fixed; z-index: 10; top: 0; bottom: 0; left: 0; max-width: 320px; border-right: 1px solid #e6e6e6; background: #f0f0f0; }
 .aw-reader-side .header { padding: 15px 0; }
@@ -17,7 +17,7 @@ input, select, textarea { font: normal 12px Verdana, Arial; }
 .aw-reader-side .logo i { font-size: 24px; vertical-align: -4px; }
 .aw-reader-side .header a { font-size: 14px; line-height: 25px; float: right; padding: 3px 10px; color: #999; }
 .aw-reader-side .header a i { margin-right: 5px; font-size: 16px;vertical-align: -1px;}
-/* 下拉菜单 */
+/* Выпадающее меню */
 .aw-reader-side .filter { line-height: 20px; height: 40px; margin: 0 -15px; padding: 0; color: #999; border-top: 1px solid white; background: #fff; }
 .aw-reader-side .filter .dropdown-list-wrap { position: relative; margin-top: 7px; }
 .aw-reader-side .filter .dropdown-list-wrap span { line-height: 26px; display: block; min-width: 20px; padding: 0 15px; cursor: pointer; text-align: left; color: #666; }
@@ -29,7 +29,7 @@ input, select, textarea { font: normal 12px Verdana, Arial; }
 .aw-reader-side .dropdown-list ul li:hover a { color: #fff; }
 .aw-reader-side .dropdown-list ul li a { color: #666; }
 .aw-reader-side #feature_selecter { display: none; float: right; margin-top: 9px; }
-/* 内容标题 */
+/* Содержание */
 .aw-reader-side .aw-mod { height: 100%; margin: 0 -15px; }
 .aw-reader-side .aw-mod ul { overflow-y: auto; margin: 0; padding: 0; list-style: none; -webkit-overflow-scrolling: touch; }
 .aw-reader-side .aw-mod ul li { min-height: 69px; margin: 0; padding: 15px; border-bottom: 1px solid #e6e6e6; }
@@ -45,13 +45,13 @@ input, select, textarea { font: normal 12px Verdana, Arial; }
 .aw-reader-side .aw-mod p span { color: #999; }
 .aw-reader-side .vote-count { font-size: 12px; position: absolute; top: 0; right: 0; display: block; width: 35px; height: 40px; padding-left: 10px; text-align: center; color: #999; border-left: 1px solid #e6e6e6; }
 
-/* 右侧阅读区域 */
+/* Чтение области на правой стороне */
 
 .aw-reader-content { position: fixed; top: 0; bottom: -5px; left: 315px; overflow: hidden; max-width: 850px; margin: 0 10px 0 0; padding: 0 0 0 5px; background: #fff; }
 .aw-reader-content .header { font-size: 12px; line-height: 60px; height: 60px; margin: 0 40px; -webkit-user-select: none; -moz-user-select: none; user-select: none; color: #999; border-bottom: 1px solid #f0f0f0; text-shadow: 0 1px 0 white; -khtml-user-select: none; }
 .aw-reader-content .header span { color: #999; }
 .aw-reader-content .header .top-actions { float: right; margin: 0 0 0 15px; color: #3474b5; }
-/* 问题 */
+/* Вопросы */
 .aw-reader-content .question { overflow-y: auto; height: 100%; padding: 30px 40px 100px; -webkit-overflow-scrolling: touch; }
 .aw-reader-content .question h1 { font-size: 20px; margin: 0 0 15px; color: #333; }
 .aw-reader-content .question-tags { min-height: 22px; margin-bottom: 20px; }
@@ -60,7 +60,7 @@ input, select, textarea { font: normal 12px Verdana, Arial; }
 .aw-reader-content .question-tags ul li a { font-size: 12px; line-height: 16px; display: inline-block; height: 20px; padding: 2px 5px; color: #fff; border-radius: 4px; background-color: #99cfff; }
 .aw-reader-content .question-description { font-size: 14px; padding: 0 0 30px; color: #666;}
 .aw-reader-content .mod-body {margin-right: -15px; border-bottom: 1px solid #f0f0f0;}
-/* 回答 */
+/* Ответы */
 .aw-reader-content .aw-answer { position: relative; padding: 30px 0 40px; color: #333; }
 .aw-reader-content .aw-answer .aw-answer-info {border-bottom: none; }
 .aw-reader-content .aw-answer .aw-answer-info .author-img { float: left; width: 32px; height: 32px; margin: 0 10px 0 0;border-radius: 4px; }
