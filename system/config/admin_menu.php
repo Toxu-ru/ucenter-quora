@@ -1,13 +1,13 @@
 <?php
 $config[] = array(
-    'title' => AWS_APP::lang()->_t('概述'),
+    'title' => AWS_APP::lang()->_t('Главная'),
     'cname' => 'home',
     'url' => 'admin/',
     'children' => array()
 );
 
 $config[] = array(
-    'title' => AWS_APP::lang()->_t('全局设置'),
+    'title' => AWS_APP::lang()->_t('Глобавльные'),
     'cname' => 'setting',
     'children' => array(
         array(
