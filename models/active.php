@@ -5,9 +5,8 @@
 |   ========================================
 |   by WeCenter Software
 |   © 2011 - 2014 WeCenter. All Rights Reserved
-|   http://www.wecenter.com
+|   and dev Evg
 |   ========================================
-|   Support: WeCenter@qq.com
 |
 +---------------------------------------------------------------------------
 */
