@@ -1,5 +1,4 @@
-// Translate by dup (286090923@qq.com)
-// modify by ytlreal
+// Надо делать полную замену с русского языка, а не с китайского
 
 var aws_lang = new Array();
 
