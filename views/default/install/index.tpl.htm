@@ -54,7 +54,7 @@
 			<b><?php _e('Транскодирование'); ?></b><?php if (!$this->system_require['convert_encoding']) { ?><span class="red">× <?php _e('WeCenter 至少需要有 MB 或 ICONV 编码转换处理库才能正常运行'); ?></span><?php } else { ?><span class="green">√</span><?php } ?>
 		</li>
 		<li>
-			<b><?php _e('Предел загрузки'); ?></b><span><?php echo get_cfg_var('upload_max_filesize'); ?> (<?php _e('此处建议值'); ?> > 8M)</span>
+			<b><?php _e('Предел загрузки'); ?></b><span><?php echo get_cfg_var('upload_max_filesize'); ?> (<?php _e('Надо'); ?> > 8M)</span>
 		</li>
 		<li>
 			<b><?php _e('Права доступа'); ?></b><span><?php echo AWS_PATH; ?></span><?php if (!$this->system_require['config_writable_core']) { ?><span class="red">×</span><?php } else { ?><span class="green">√</span><?php } ?>
