@@ -14,10 +14,10 @@
 						<div class="mod-head clearfix">
 							<a href="javascript:;" class="img" style="background:url('<?php echo get_topic_pic_url('mid', $this->topic_info['topic_pic']); ?>') no-repeat;" <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'] OR ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic'])) { ?> id="topic_pic_uploader"<?php } ?>>
 								<span class="mask"></span>
-								<b>修改</b>
+								<b>Vодификация</b>
 							</a>
 							<h3><?php echo $this->topic_info['topic_title']; ?></h3>
-							<span class="pull-left"><?php _e('相关话题'); ?> : </span>
+							<span class="pull-left"><?php _e('Похожие темы'); ?> : </span>
 							<div class="aw-topic-bar pull-left" data-type="topic" data-id="<?php echo $this->topic_info['topic_id']; ?>">
 								<div class="tag-bar clearfix">
 									<?php if ($this->related_topics) { ?>
@@ -53,7 +53,7 @@
 				<div class="col-sm-3 aw-side-bar">
 					<div class="aw-mod topic-edit-help">
 						<div class="mod-head">
-							<h3><?php _e('话题编辑指南'); ?></h3>
+							<h3><?php _e('Редактирование, правила'); ?></h3>
 						</div>
 						<div class="mod-body">
 							 <p><b>• <?php _e('相关话题'); ?>:</b> <?php _e('添加和该话题词义相近或者相似的话题'); ?></p>
