@@ -39,7 +39,7 @@
 			<b><?php _e('CURL'); ?></b><?php if (!$this->system_require['curl']) { ?><span class="red">×</span><?php } else { ?><span class="green">√</span><?php } ?>
 		</li>
 		<li>
-			<b><?php _e('IMG'); ?></b><span><?php echo $this->system_require['image_lib']; ?></span><?php if (!$this->system_require['image_lib']) { ?><span class="red">× <?php _e('WeCenter 至少需要有 GD 图象处理库才能正常运行'); ?></span><?php } else { ?><span class="green">√ <?php if ($this->system_require['image_lib'] == 'GD') { ?>(<?php _e('加装 ImageMagick 性能更佳'); ?>)<?php } ?></span><?php } ?>
+			<b><?php _e('IMG'); ?></b><span><?php echo $this->system_require['image_lib']; ?></span><?php if (!$this->system_require['image_lib']) { ?><span class="red">× <?php _e('Есть GD'); ?></span><?php } else { ?><span class="green">√ <?php if ($this->system_require['image_lib'] == 'GD') { ?>(<?php _e('Есть ImageMagick'); ?>)<?php } ?></span><?php } ?>
 		</li>
 		<li>
 			<b><?php _e('FreeType'); ?></b><?php if (!$this->system_require['ft_font']) { ?><span class="red">× <?php _e('WeCenter 的验证码需要 FreeType 支持'); ?></span><?php } else { ?><span class="green">√</span><?php } ?>
