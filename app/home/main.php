@@ -5,9 +5,8 @@
 |   ========================================
 |   by WeCenter Software
 |   © 2011 - 2014 WeCenter. All Rights Reserved
-|   http://www.wecenter.com
+|   and dev Evg
 |   ========================================
-|   Support: WeCenter@qq.com
 |
 +---------------------------------------------------------------------------
 */
@@ -60,7 +59,7 @@ class main extends AWS_CONTROLLER
 			HTTP::redirect('/account/complete_profile/');
 		}
 
-		// 边栏可能感兴趣的人或话题
+		//Люди могут быть заинтересованы в боковой панели или темы
 		if (TPL::is_output('block/sidebar_recommend_users_topics.tpl.htm', 'home/index'))
 		{
 			$recommend_users_topics = $this->model('module')->recommend_users_topics($this->user_id);
@@ -68,7 +67,7 @@ class main extends AWS_CONTROLLER
 			TPL::assign('sidebar_recommend_users_topics', $recommend_users_topics);
 		}
 
-		// 边栏热门用户
+		// Боковой Топ
 		if (TPL::is_output('block/sidebar_hot_users.tpl.htm', 'home/index'))
 		{
 			$sidebar_hot_users = $this->model('module')->sidebar_hot_users($this->user_id);
@@ -76,7 +75,7 @@ class main extends AWS_CONTROLLER
 			TPL::assign('sidebar_hot_users', $sidebar_hot_users);
 		}
 
-		$this->crumb(AWS_APP::lang()->_t('动态'), '/home/');
+		$this->crumb(AWS_APP::lang()->_t('Главная'), '/home/');
 
 		TPL::import_js('js/app/index.js');
 
