@@ -5,9 +5,8 @@
 |   ========================================
 |   by WeCenter Software
 |   © 2011 - 2014 WeCenter. All Rights Reserved
-|   http://www.wecenter.com
 |   ========================================
-|   Support: WeCenter@qq.com
+|   © 2017 and dev Evg
 |
 +---------------------------------------------------------------------------
 */
@@ -18,7 +17,7 @@ HTTP::no_cache_header();
 
 if (file_exists(AWS_PATH . 'config/install.lock.php'))
 {
-	H::redirect_msg(load_class('core_lang')->_t('您的程序已经安装, 要重新安装请删除 system/config/install.lock.php'));
+	H::redirect_msg(load_class('core_lang')->_t('Ваша программа была установлена. Для повторной установки удалите: system/config/install.lock.php'));
 }
 
 @set_time_limit(0);
@@ -99,13 +98,13 @@ switch ($_POST['step'])
 			$system_require['zlib'] = TRUE;
 		}
 		
-		// 检测 AWS_PATH 是否有写权限
+		// AWS_PATH 
 		if (is_really_writable(AWS_PATH) OR defined('IN_SAE'))
 		{
 			$system_require['config_writable_core'] = TRUE;
 		}
 
-		// 检测 AWS_PATH /config/ 是否有写权限
+		//  AWS_PATH /config/ 
 		if (is_really_writable(AWS_PATH . 'config/') OR defined('IN_SAE'))
 		{
 			$system_require['config_writable_config'] = TRUE;
@@ -117,12 +116,12 @@ switch ($_POST['step'])
 		{
 			if (!@file_get_contents('http://api.weibo.com/'))
 			{
-				$error_messages[] = load_class('core_lang')->_t('你的主机无法与微博通讯, 相关功能将不能使用');
+				$error_messages[] = load_class('core_lang')->_t('Не возможно установить связь с weibo');
 			}
 
 			if (!@gethostbyname('graph.qq.com'))
 			{
-				$error_messages[] = load_class('core_lang')->_t('你的主机无法与 QQ 通讯, QQ 登录功能将不能使用');
+				$error_messages[] = load_class('core_lang')->_t('Не возможно установить связь с QQ');
 			}
 		}
 
@@ -148,14 +147,14 @@ switch ($_POST['step'])
 				{
 					if (! @mkdir(ROOT_PATH . $dir_name))
 					{
-						$error_messages[] = load_class('core_lang')->_t('目录: %s 无法创建，请将网站根目录权限设置为 777, 或者创建这个目录设置权限为 777', ROOT_PATH . $dir_name);
+						$error_messages[] = load_class('core_lang')->_t('Каталог: %s не удается создать. Установите: 777, разрешения', ROOT_PATH . $dir_name);
 					}
 				}
 			}
 
 			if (! is_really_writable(AWS_PATH))
 			{
-				$error_messages[] = load_class('core_lang')->_t('目录: %s 无法写入，请将此目录权限设置为 777', AWS_PATH);
+				$error_messages[] = load_class('core_lang')->_t('В каталог: %s не дается записать. Установите: 777 разрешение', AWS_PATH);
 			}
 		}
 
@@ -232,7 +231,7 @@ switch ($_POST['step'])
 		}
 		catch (Exception $e)
 		{
-			H::redirect_msg(load_class('core_lang')->_t('数据库连接失败, 错误信息:') . ' ' . strip_tags($e->getMessage()), './');
+			H::redirect_msg(load_class('core_lang')->_t('Соединение с базой, не удается:') . ' ' . strip_tags($e->getMessage()), './');
 		}
 
 		try
@@ -241,17 +240,17 @@ switch ($_POST['step'])
 		}
 		catch (Exception $e)
 		{
-			H::redirect_msg(load_class('core_lang')->_t('数据库连接失败, 错误信息:') . ' ' . strip_tags($e->getMessage()), './');
+			H::redirect_msg(load_class('core_lang')->_t('Соединение с базой, не удается:') . ' ' . strip_tags($e->getMessage()), './');
 		}
 
 		if (number_format($db->getServerVersion(), 1) < 5)
 		{
-			H::redirect_msg(load_class('core_lang')->_t('安装中止: WeCenter 要求使用 MySQL 5.0 以上版本的数据库支持, 您的服务器当前 MySQL 版本为: %s', $db->getServerVersion()), './');
+			H::redirect_msg(load_class('core_lang')->_t('Установка прервана. Требуется MySQL 5.0 и выше. Ваша версия: %s', $db->getServerVersion()), './');
 		}
 
 		if (!$_POST['db_prefix'] AND count($tables) > 0)
 		{
-			H::redirect_msg(load_class('core_lang')->_t('数据库已经存在数据表, 不允许安装, 如要重新安装请先清空数据表'), './');
+			H::redirect_msg(load_class('core_lang')->_t('Таблицы с данными базы уже существуют'), './');
 		}
 
 		foreach ($tables AS $key => $table_info)
@@ -265,7 +264,7 @@ switch ($_POST['step'])
 			{
 				if (substr($table, 0, strlen($_POST['db_prefix'])) == $_POST['db_prefix'])
 				{
-					H::redirect_msg(load_class('core_lang')->_t('数据库已经存在相同前缀的数据表, 不允许安装, 如要重新安装请先清空数据表'), './');
+					H::redirect_msg(load_class('core_lang')->_t('База данных уже существует с теми же таблицами и префиксом'), './');
 
 					break;
 				}
@@ -290,7 +289,7 @@ switch ($_POST['step'])
 			load_class('core_config')->set('database', $config);
 		}
 
-		// 创建数据表
+		// Создание таблицы данных
 		$db_table_querys = explode(";\r", str_replace(array('[#DB_PREFIX#]', '[#DB_ENGINE#]', "\n"), array($_POST['db_prefix'], $_POST['db_engine'], "\r"), file_get_contents(ROOT_PATH . 'install/db/mysql.sql')));
 
 		foreach ($db_table_querys as $_sql)
@@ -344,12 +343,12 @@ switch ($_POST['step'])
 			 'uid' => 1,
 			 'action' => 'REGISTER',
 			 'integral' => 2000,
-			 'note' => load_class('core_lang')->_t('初始资本'),
+			 'note' => load_class('core_lang')->_t('Начало'),
 			 'balance' => 2000,
 			 'time' => time()
 		));
 
-		// 加载网站配置
+		// Загрузить конфигурацию веб-сайта
 		$base_dir = dirname(dirname($_SERVER['PHP_SELF']));
 		$base_dir = ($base_dir == DIRECTORY_SEPARATOR) ? '' : $base_dir;
 
