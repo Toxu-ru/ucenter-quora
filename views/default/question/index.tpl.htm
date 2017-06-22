@@ -22,14 +22,14 @@
 					<?php if (sizeof($this->question_topics) == 0 AND $this->user_id AND !$this->question_info['lock'] && $this->user_info['permission']['edit_topic']) { ?>
 					<div class="aw-notopic-sort">
 						<?php if ($this->related_topics) { ?>
-						<span class="pull-left"><?php _e('可能属于这些话题'); ?>&nbsp;:&nbsp;</span>
+						<span class="pull-left"><?php _e('Вы можете принадлежать к этим темам'); ?>&nbsp;:&nbsp;</span>
 						<?php foreach ($this->related_topics AS $key => $topic_title) { ?>
 						<span class="topic-tag">
 							<a onclick="one_click_add_topic($(this), '<?php echo $topic_title; ?>', <?php echo $this->question_info['question_id'];?>);" class="text"><?php echo $topic_title; ?></a>
 						</span>
-						<?php } ?>, <?php _e('都不是'); ?>? <a href="javascript:;" onclick="$('#question_topic_editor .aw-edit-topic').click();$(this).parents('.aw-notopic-sort').hide();"> <?php _e('点此添加话题'); ?></a>
+						<?php } ?>, <?php _e('это не'); ?>? <a href="javascript:;" onclick="$('#question_topic_editor .aw-edit-topic').click();$(this).parents('.aw-notopic-sort').hide();"> <?php _e('Нажмите здесь, чтобы добавить тему'); ?></a>
 						<?php } else { ?>
-						<?php _e('没有归属话题, 请帮问题添加话题'); ?>, <a href="javascript:;" onclick="$('#question_topic_editor .aw-edit-topic').click(); $(this).parents('.aw-notopic-sort').hide();"><?php _e('点此添加话题'); ?></a>
+						<?php _e('Без атрибуции темы, пожалуйста, помогите проблеме добавить темы'); ?>, <a href="javascript:;" onclick="$('#question_topic_editor .aw-edit-topic').click(); $(this).parents('.aw-notopic-sort').hide();"><?php _e('Нажмите здесь, чтобы добавить тему'); ?></a>
 						<?php } ?>
 					</div>
 					<?php } ?>
@@ -238,7 +238,7 @@
 						<div class="aw-question-related-box collapse">
 							<form action="publish/ajax/save_related_link/" method="post" onsubmit="return false" id="related_link_form">
 								<div class="mod-head">
-									<h2><?php _e('Ссылки на содержание, связанное с'); ?></h2>
+									<h2><?php _e('Ссылки на содержание, связанное с этим вопросом'); ?></h2>
 								</div>
 								<div class="mod-body clearfix">
 									<input type="hidden" name="item_id" value="<?php echo $this->question_info['question_id']; ?>" />
