@@ -1,30 +1,15 @@
 <?php
 /**
- * WeCenter Framework
+ * WeCenter 
  *
- * An open source application development framework for PHP 5.2.2 or newer
- *
- * @package		WeCenter Framework
- * @author		WeCenter Dev Team
- * @copyright	Copyright (c) 2011 - 2014, WeCenter, Inc.
- * @license		http://www.wecenter.com/license/
- * @link		http://www.wecenter.com/
- * @since		Version 1.0
- * @filesource
- */
-
-/**
- * WeCenter 系统函数类
- *
- * @package		WeCenter
+ * @package		http://toxu.ru
  * @subpackage	System
  * @category	Libraries
- * @author		WeCenter Dev Team
+ * @author		Evg Dev 
  */
 
 /**
- * 获取站点根目录 URL
- *
+ * URL
  * @return string
  */
 function base_url()
@@ -436,8 +421,8 @@ function date_friendly($timestamp, $time_limit = 604800, $out_format = 'Y-m-d H:
 
 	if ($formats == null)
 	{
-		$formats = array('YEAR' => AWS_APP::lang()->_t('%s 年前'), 'MONTH' => AWS_APP::lang()->_t('%s 月前'), 'DAY' => AWS_APP::lang()->_t('%s 天前'), 'HOUR' => AWS_APP::lang()->_t('%s 小时前'), 'MINUTE' => AWS_APP::lang()->_t('%s 分钟前'), 'SECOND' => AWS_APP::lang()->_t('%s 秒前'));
-	}
+		$formats = array('YEAR' => AWS_APP::lang()->_t('%s лет назад'), 'MONTH' => AWS_APP::lang()->_t('%s месяцев назад'), 'DAY' => AWS_APP::lang()->_t('%s дней назад'), 'HOUR' => AWS_APP::lang()->_t('%s часов назад'), 'MINUTE' => AWS_APP::lang()->_t('%s минут назад'), 'SECOND' => AWS_APP::lang()->_t('%s секунд назад'));
+        }
 
 	$time_now = $time_now == null ? time() : $time_now;
 	$seconds = $time_now - $timestamp;
