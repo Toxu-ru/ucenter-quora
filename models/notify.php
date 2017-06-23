@@ -5,10 +5,8 @@
 |   ========================================
 |   by WeCenter Software
 |   © 2011 - 2014 WeCenter. All Rights Reserved
-|   http://www.wecenter.com
 |   ========================================
-|   Support: WeCenter@qq.com
-|
+|   © 2017 Evg - toxu.ru
 +---------------------------------------------------------------------------
 */
 
@@ -20,17 +18,17 @@ if (!defined('IN_ANWSION'))
 
 class notify_class extends AWS_MODEL
 {
-	//=========模型类别:model_type===================================================
+	//=========Категория Модель:model_type===================================================
 
-	const CATEGORY_QUESTION	= 1;	// 问题
-	const CATEGORY_PEOPLE	= 4;	// 人物
-	const CATEGORY_CONTEXT	= 7;	// 文字
+	const CATEGORY_QUESTION	= 1;	// Вопросы
+	const CATEGORY_PEOPLE	= 4;	// Люди
+	const CATEGORY_CONTEXT	= 7;	// Содержание
 
-	const CATEGORY_ARTICLE	= 8;	// 文章
+	const CATEGORY_ARTICLE	= 8;	// Статьи
 
-	const CATEGORY_TICKET	= 9;	// 文章
+	const CATEGORY_TICKET	= 9;	// Статьи
 
-	//=========操作标示:action_type==================================================
+	//=========Операционная марка:action_type==================================================
 
 	const TYPE_PEOPLE_FOCUS	= 101;	// 被人关注
 	const TYPE_NEW_ANSWER	= 102;	// 关注的问题增加了新回复
@@ -76,7 +74,7 @@ class notify_class extends AWS_MODEL
 	}
 
 	/**
-	 * 发送通知
+	 * Отправлять уведомления
 	 * 
 	 * @param $action_type	操作类型，使用notify_class调用TYPE
 	 * @param $uid			接收用户id
@@ -118,9 +116,9 @@ class notify_class extends AWS_MODEL
 	}
 
 	/**
-	 * 获得通知列表
+	 * Заявленный список
 	 * 
-	 * @param $read_status 0 - 未读, 1 - 已读, other - 所有
+	 * @param $read_status 0 - непрочитанный, 1 - считывание, other - все
 	 */
 	public function list_notification($recipient_uid, $read_status = 0, $limit = null)
 	{
@@ -587,7 +585,7 @@ class notify_class extends AWS_MODEL
 				}
 
 				$tmp_data['users'][$uid] = array(
-					'username' => $anonymous ? AWS_APP::lang()->_t('匿名用户') : $user_infos[$uid]['user_name'],
+					'username' => $anonymous ? AWS_APP::lang()->_t('Anonymous') : $user_infos[$uid]['user_name'],
 					'url' => $url
 				);
 			}
@@ -599,7 +597,7 @@ class notify_class extends AWS_MODEL
 	}
 
 	/**
-	 * 检查指定用户的通知设置
+	 * Проверьте заданные параметры уведомления пользователя
 	 */
 	public function check_notification_setting($recipient_uid, $action_type)
 	{
@@ -610,7 +608,7 @@ class notify_class extends AWS_MODEL
 
 		$notification_setting = $this->model('account')->get_notification_setting_by_uid($recipient_uid);
 
-		// 默认不认置则全部都发送
+		// Он не признает настройки для отправки всех по умолчанию
 		if (!$notification_setting['data'])
 		{
 			return true;
@@ -626,10 +624,10 @@ class notify_class extends AWS_MODEL
 
 	/**
 	 *
-	 * 阅读段信息
-	 * @param int $notification_id 信息id
+	 * Читайте информацию по сегментам
+	 * @param int $notification_id  - id
 	 *
-	 * @return array信息内容数组
+	 * @return array 
 	 */
 	public function read_notification($notification_id, $uid = null)
 	{
@@ -752,7 +750,7 @@ class notify_class extends AWS_MODEL
 	}
 
 	/**
-	 * 获得用户未读合并通知
+	 * Пользователи получают непрочитанное уведомление о слиянии
 	 */
 	function get_unread_notification($recipient_uid)
 	{
@@ -843,12 +841,12 @@ class notify_class extends AWS_MODEL
 				switch ($val['model_type'])
 				{
 					case self::CATEGORY_QUESTION:
-						$data[$key]['message'] = $val['extend_count'] . ' ' . AWS_APP::lang()->_t('项关于问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
+						$data[$key]['message'] = $val['extend_count'] . ' новости ' . AWS_APP::lang()->_t('в вопросе:') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
 
 						break;
 
 					case self::CATEGORY_ARTICLE:
-						$data[$key]['message'] = $val['extend_count'] . ' ' . AWS_APP::lang()->_t('项关于文章') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
+						$data[$key]['message'] = $val['extend_count'] . ' ' . AWS_APP::lang()->_t(' пункт о статьи ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
 
 						break;
 
@@ -871,66 +869,66 @@ class notify_class extends AWS_MODEL
 					switch ($action_type)
 					{
 						case self::TYPE_ANSWER_AT_ME:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('有一些用户在回答中提到了你');
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('Некоторые пользователи, указанные в ответе');
 							break;
 
 						case self::TYPE_COMMENT_AT_ME:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('有一些用户问题中的评论提到了你');
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('Есть некоторые пользователи вопросы вы упомянули комментарии');
 
 							break;
 
 						case self::TYPE_ANSWER_COMMENT_AT_ME:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('有一些用户在回答中的评论提到了你');
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('Некоторые пользователи, указанные в ответе на комментарии');
 
 							break;
 
 						case self::TYPE_ARTICLE_COMMENT_AT_ME:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('有一些用户在文章中的评论提到了你');
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('Некоторые пользователи упоминают вас в комментариях к статьи');
 
 							break;
 
 						case self::TYPE_ARTICLE_NEW_COMMENT:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s 个新回复', $extend['count']);
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s новый ответ', $extend['count']);
 
 							break;
 
 						case self::TYPE_NEW_ANSWER:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s 个新回复', $extend['count']);
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s новый ответ', $extend['count']);
 
 							break;
 
 						case self::TYPE_ANSWER_COMMENT:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s 个新评论', $extend['count']);
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s новый комментарий', $extend['count']);
 
 							break;
 
 						case self::TYPE_ANSWER_AGREE:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s 个新赞同, 按赞同者查看', $extend['count']) . ': ' . $users_list;
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s новые голосования за ваш ответ', $extend['count']) . ': ' . $users_list;
 
 							break;
 
 						case self::TYPE_ANSWER_THANK:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s 个新感谢, 按感谢者查看', $extend['count']) . ': ' . $users_list;
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s сказали спасибо ', $extend['count']) . ': ' . $users_list;
 
 							break;
 
 						case self::TYPE_MOD_QUESTION:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s 次编辑问题, 按编辑者查看', $extend['count']) . ': ' . $users_list;
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s Редактирование вопроса, в соответствии с видом редакторов', $extend['count']) . ': ' . $users_list;
 
 							break;
 
 						case self::TYPE_REDIRECT_QUESTION:
-							$data[$key]['extend_message'][] = $users_list . ' ' . AWS_APP::lang()->_t('重定向了你发布的问题');
+							$data[$key]['extend_message'][] = $users_list . ' ' . AWS_APP::lang()->_t('Задайте свой вопрос перенаправления');
 
 							break;
 
 						case self::TYPE_REMOVE_ANSWER:
-							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s 个回复被删除', $extend['count']);
+							$data[$key]['extend_message'][] = AWS_APP::lang()->_t('%s ответов будут удалены', $extend['count']);
 
 							break;
 
 						case self::TYPE_INVITE_QUESTION:
-							$data[$key]['extend_message'][] = $users_list . ' ' . AWS_APP::lang()->_t('邀请你参与问题');
+							$data[$key]['extend_message'][] = $users_list . ' ' . AWS_APP::lang()->_t('Пригласить ваше участие');
 
 							break;
 					}
@@ -941,90 +939,91 @@ class notify_class extends AWS_MODEL
 				switch ($val['action_type'])
 				{
 					case self::TYPE_PEOPLE_FOCUS:
-						$data[$key]['message'] = '<a href="' . $val['key_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('关注了你');
+						$data[$key]['message'] = '<a href="' . $val['key_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t(' подписался на вас!');
 
 						break;
 
 					case self::TYPE_NEW_ANSWER:
 						if ($val['anonymous'])
 						{
-							$data[$key]['message'] = AWS_APP::lang()->_t('匿名用户');
+							$data[$key]['message'] = AWS_APP::lang()->_t('Анонимный пользователь');
 						}
 						else
 						{
 							$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a>';
 						}
 
-						$data[$key]['message'] .= ' ' . AWS_APP::lang()->_t('回复了问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
+						$data[$key]['message'] .= ' ' . AWS_APP::lang()->_t('Ответ на вопрос ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
 
 						break;
 
 					case self::TYPE_ARTICLE_NEW_COMMENT:
-						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('评论了文章') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
+						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('Прокомментировал статью ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
 
 						break;
 
 					case self::TYPE_COMMENT_AT_ME:
-						$data[$key]['message'] = AWS_APP::lang()->_t('有会员在问题 %s 的评论提到了你', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
+						$data[$key]['message'] = AWS_APP::lang()->_t('Умомянул в вас в комментариях в вопросе %s ', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
 
 						break;
 
 					case self::TYPE_ARTICLE_COMMENT_AT_ME:
-						$data[$key]['message'] = AWS_APP::lang()->_t('有会员在文章 %s 的评论提到了你', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
+						$data[$key]['message'] = AWS_APP::lang()->_t('Упомянул вас в статье %s ', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
 
 						break;
 
 					case self::TYPE_ANSWER_AT_ME:
-						$data[$key]['message'] = AWS_APP::lang()->_t('有会员在问题 %s 的回答提到了你', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
+						$data[$key]['message'] = AWS_APP::lang()->_t('Упомянул вас в ответе на вопрос %s ', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
 
 						break;
 
 					case self::TYPE_ANSWER_COMMENT_AT_ME:
-						$data[$key]['message'] = AWS_APP::lang()->_t('有会员在问题 %s 的回答评论中提到了你', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
+						$data[$key]['message'] = AWS_APP::lang()->_t(' Упомянул в комментариях к вопросу: %s', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
 					break;
 
 					case self::TYPE_INVITE_QUESTION:
-						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('邀请你参与问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
+						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('Пригласил вас в ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
 
 						break;
 
 					case self::TYPE_ANSWER_COMMENT:
-						$data[$key]['message'] = AWS_APP::lang()->_t('有会员评论了你在问题 %s 的回答', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
+						$data[$key]['message'] = AWS_APP::lang()->_t('Пользователь прокомментировал ответ на ваш вопрос: %s', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
 
 						break;
 
 					case self::TYPE_QUESTION_COMMENT:
-						$data[$key]['message'] = AWS_APP::lang()->_t('有会员评论了你发起的问题 %s', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
+						$data[$key]['message'] = AWS_APP::lang()->_t('Пользователь прокомментировал ваш вопрос: %s', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
 
 						break;
 
 					case self::TYPE_ANSWER_AGREE:
-						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('赞同了你在问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a> ' . AWS_APP::lang()->_t('中的回复');
+						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t(' согласен с вами по ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a> ' . AWS_APP::lang()->_t(' ');
 
 						break;
 
 					case self::TYPE_ANSWER_THANK:
-						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('感谢了你在问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a> ' . AWS_APP::lang()->_t('中的回复');
+						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t(' поблагодарил вас в вопросе ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a> ' . AWS_APP::lang()->_t('');
+
 
 						break;
 
 					case self::TYPE_MOD_QUESTION:
-						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('编辑了你发布的问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
+						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t(' редактировал вопрос, которые вы разместили ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
 
 						break;
 
 					case self::TYPE_REMOVE_ANSWER:
-						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('删除了你在问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a> ' . AWS_APP::lang()->_t('中的回复');
+						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t(' удалил ваш вопрос ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a> ' . AWS_APP::lang()->_t(' ');
 
 						break;
 
 					case self::TYPE_REDIRECT_QUESTION:
-						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('重定向了你发起的问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
+						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t(' перенаправил ваш вопрос ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
 
 						break;
 
 					case self::TYPE_QUESTION_THANK:
-						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t('感谢了你发起的问题') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
+						$data[$key]['message'] = '<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ' . AWS_APP::lang()->_t(' спасибо за заданный вопрос ') . ' <a href="' . $val['key_url'] . '">' . $val['title'] . '</a>';
 
 						break;
 
@@ -1034,27 +1033,27 @@ class notify_class extends AWS_MODEL
 						break;
 
 					case self::TYPE_ARTICLE_APPROVED:
-						$data[$key]['message'] = AWS_APP::lang()->_t('你发起的文章 %s 审核通过', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
+						$data[$key]['message'] = AWS_APP::lang()->_t('Ваш статья утверждена и добавлена: %s', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
 
 						break;
 
 					case self::TYPE_ARTICLE_REFUSED:
-						$data[$key]['message'] = AWS_APP::lang()->_t('你发起的文章 %s 审核未通过', $val['title']);
+						$data[$key]['message'] = AWS_APP::lang()->_t('Ваша статья не прошла проверку и была удалена: %s', $val['title']);
 
 						break;
 
 					case self::TYPE_QUESTION_APPROVED:
-						$data[$key]['message'] = AWS_APP::lang()->_t('你发起的问题 %s 审核通过', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
+						$data[$key]['message'] = AWS_APP::lang()->_t('Ваш вопрос утвержден и добавлен: %s', '<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>');
 
 						break;
 
 					case self::TYPE_QUESTION_REFUSED:
-						$data[$key]['message'] = AWS_APP::lang()->_t('你发起的问题 %s 审核未通过', $val['title']);
+						$data[$key]['message'] = AWS_APP::lang()->_t('Ваш вопрос не прошел проверку и был удален: %s', $val['title']);
 
 						break;
 
 					case self::TYPE_TICKET_CLOSED:
-						$data[$key]['message'] = AWS_APP::lang()->_t('%s0 关闭了你发起的工单 %s1', array(
+						$data[$key]['message'] = AWS_APP::lang()->_t('%s0 Закройте порядок работы вы инициированную %s1', array(
 							'<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ',
 							'<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>'
 						));
@@ -1062,7 +1061,7 @@ class notify_class extends AWS_MODEL
 						break;
 
 					case self::TYPE_TICKET_REPLIED:
-						$data[$key]['message'] = AWS_APP::lang()->_t('%s0 回复了你发起的工单 %s1', array(
+						$data[$key]['message'] = AWS_APP::lang()->_t('%s0 Ответ на билет вы инициированный %s1', array(
 							'<a href="' . $val['p_url'] . '">' . $val['p_user_name'] . '</a> ',
 							'<a href="' . $val['key_url'] . '">' . $val['title'] . '</a>'
 						));
@@ -1076,9 +1075,9 @@ class notify_class extends AWS_MODEL
 	}
 	
 	/**
-	 * 定期清理已读通知
+	 * Убирать регулярно читать уведомления
 	 * 
-	 * @param $period 周期, 单位: 秒
+	 * @param $period Период, единица: секунды
 	 */
 	public function clean_mark_read_notifications($period)
 	{
