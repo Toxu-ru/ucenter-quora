@@ -317,7 +317,7 @@
 												<?php } ?>
 											</p>
 											<p class="text-color-999 aw-agree-by<?php if (sizeof($val['agree_users']) == 0) { ?> collapse<?php } ?>">
-												<?php _e('Согласовано с'); ?>:
+												<?php _e('Нравится'); ?>:
 
 												<?php if ($val['agree_users']) { ?>
 												<?php $count = 0; foreach($val['agree_users'] AS $uid => $user) { ?>
@@ -460,7 +460,7 @@
 								<?php } ?>
 								<?php if (!$this->question_focus) { ?>
 								<label class="pull-right">
-									<input type="checkbox" checked="checked" value="1" name="auto_focus" /> <?php _e('Обеспокоенность'); ?>
+									<input type="checkbox" checked="checked" value="1" name="auto_focus" /> <?php _e('Подписаться'); ?>
 								</label>
 								<?php } ?>
 								<label class="pull-right">
