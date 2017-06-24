@@ -165,7 +165,7 @@
 								<a class="text-color-999 aw-add-question-related hidden-xs"><i class="icon icon-bind"></i> <?php _e('Ссылки'); ?></a>
 								<?php } ?>
 								<div class="pull-right more-operate">
-									<?php if ($this->user_id != $this->question_info['published_uid'] AND $this->user_id) { ?><a <?php if (!$this->question_thanks) { ?>data-placement="bottom" title="" data-toggle="tooltip" data-original-title="<?php _e('Спасибо'); ?>" onclick="AWS.User.question_thanks($(this), <?php echo $this->question_info['question_id']; ?>);"<?php } ?> class="aw-icon-thank-tips text-color-999"><i class="icon icon-thank"></i><?php if ($this->question_thanks) { ?><?php _e('Именно поблагодарить'); ?><?php } else { ?><?php _e('Спасибо'); ?><?php } ?></a>
+									<?php if ($this->user_id != $this->question_info['published_uid'] AND $this->user_id) { ?><a <?php if (!$this->question_thanks) { ?>data-placement="bottom" title="" data-toggle="tooltip" data-original-title="<?php _e('Спасибо'); ?>" onclick="AWS.User.question_thanks($(this), <?php echo $this->question_info['question_id']; ?>);"<?php } ?> class="aw-icon-thank-tips text-color-999"><i class="icon icon-thank"></i><?php if ($this->question_thanks) { ?><?php _e('Поблагодарил'); ?><?php } else { ?><?php _e('Спасибо'); ?><?php } ?></a>
 									<?php } ?>
 
 									<!-- <a class="text-color-999"  onclick="AWS.dialog('shareOut', {item_type:'question', item_id:<?php echo $this->question_info['question_id']; ?>});"> -->
