@@ -49,10 +49,9 @@ select{width: auto;}
 .form-control:focus{border-color:#499ef3 !important;box-shadow: none;}
 .btn-group.open .aw-dropdown, .aw-feed-list .more-operate.open .aw-dropdown, .aw-question-detail .more-operate.open .aw-dropdown, .aw-article-list .aw-item .mod-footer .more-operate.open .aw-dropdown{display: block;}
 
-/* 公共部分 */
 html{height: 100%;}
-body{margin: 0;height: 100%;font-size:14px; line-height:160%;color: #666;background:url('img/bg.gif') repeat;}
-body, input, button, select, textarea, h1, h2, h3, h4, h5, h6{font-family:'Helvetica Neue', 'STHeiti', '微软雅黑', 'Microsoft YaHei', Helvetica,Arial,sans-serif;}
+body{margin: 0;height: 100%;font-size:15px; line-height:160%;color: #666;background:url('img/bg.gif') repeat;}
+body, input, button, select, textarea, h1, h2, h3, h4, h5, h6{font-family:arial,sans-serif,helvetica;}
 ul, ol{margin:0;padding:0;list-style:none;}
 h1, h2, h3, h4, h5, h6{margin-top:0;font-size:100%;line-height: 1.7;}
 dd{margin-left: 10px;}
@@ -556,7 +555,7 @@ blockquote {margin: 0 40px;padding: 0 15px;font-size: 14px;color: #777;border-le
 .aw-common-list .aw-item{position:relative;z-index:0;;min-height:77px;padding:14px 0 14px 50px;}
 .aw-common-list .aw-item .icon-v, .aw-feed-list .aw-item .icon-v{position:absolute;left:-5px;top:-5px;width:18px;height:18px;background-color: #a3d700;color: #fff;text-align: center;line-height: 18px;font-size: 14px;border-radius: 4px;}
 .aw-common-list .aw-item .icon-v.i-ve, .aw-feed-list .aw-item .icon-v.i-ve{background-color: #ffca3f;color: #fff;}
-.aw-common-list .aw-item.article .markitup-box{max-height: 130px;overflow: hidden;}
+.aw-common-list .aw-item.article .markitup-box{max-height: 120px;overflow: hidden;}
 .aw-common-list .aw-item.article .aw-upload-img-list{position: absolute;right: 10px;top: 0;width: 200px;}
 .aw-common-list .aw-item.article .aw-upload-img-list img{max-width: 200px;}
 .aw-common-list .aw-item.article .more{font-size: 12px;}
