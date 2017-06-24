@@ -1,74 +1,80 @@
 <?php TPL::output('global/header.tpl.htm'); ?>
 
 <div class="aw-container-wrap">
-	<div class="container aw-publish aw-publish-article">
+	<div class="container aw-publish">
 		<div class="row">
 			<div class="aw-content-wrap clearfix">
 				<div class="col-sm-12 col-md-9 aw-main-content">
-					<!-- tab 切换 -->
+					<!-- tab  -->
 					<ul class="nav nav-tabs aw-nav-tabs active">
+						<?php if (check_extension_package('project') && get_setting('project_enabled') == 'Y' && $this->user_info['permission']['publish_project']) { ?>
+						<li><a href="project/publish/"><?php _e('Деятельность'); ?></a></li>
+						<?php } ?>
 						<?php if (check_extension_package('ticket') && get_setting('ticket_enabled') == 'Y' && $this->user_info['permission']['publish_ticket']) { ?>
-						<li><a href="ticket/publish/"><?php _e('工单'); ?></a></li>
+						<li><a href="ticket/publish/"><?php _e('Наряд'); ?></a></li>
 						<?php } ?>
-						<li class="active"><a href="publish/article/"><?php _e('文章'); ?></a></li>
-						<?php if ($this->user_info['permission']['publish_question']) { ?>
-						<li><a href="publish/"><?php _e('问题'); ?></a></li>
+						<?php if ($this->user_info['permission']['publish_article']) { ?>
+						<li><a href="publish/article/"><?php _e('Статьи'); ?></a></li>
 						<?php } ?>
-						<h2 class="hidden-xs"><i class="icon icon-ask"></i> <?php _e('发起'); ?></h2>
+						<li class="active"><a href="publish/"><?php _e('Вопрос'); ?></a></li>
+						<h2 class="hidden-xs"><i class="icon icon-ask"></i> <?php _e('Задать вопрос'); ?></h2>
 					</ul>
-					<!-- end tab 切换 -->
-					<form action="publish/ajax/<?php if ($this->article_info['id']) { ?>modify<?php } else { ?>publish<?php } ?>_article/" method="post" id="question_form" onsubmit="return false;">
+					<!-- end tab  -->
+					<form action="publish/ajax/<?php if ($this->question_info['question_id']) { ?>modify<?php } else { ?>publish<?php } ?>_question/" method="post" id="question_form" onsubmit="return false;">
 						<input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
 						<input type="hidden" name="attach_access_key" value="<?php echo $this->attach_access_key; ?>" />
-						<input type="hidden" name="article_id" id="article_id" value="<?php echo $this->article_info['id']; ?>" />
-						<?php if ($this->article_category_list) { ?>
-							<select name="category_id" class="collapse" id="category_id">
-								<option value="0">- <?php _e('请选择分类'); ?> -</option>
-								<?php echo $this->article_category_list; ?>
-							</select>
-							<?php } ?>
+						<input type="hidden" name="question_id" id="question_id" value="<?php echo $this->question_info['question_id']; ?>" />
+						<input type="hidden" name="ask_user_id" value="<?php echo $_POST['ask_user_id']; ?>" />
+						<?php if ($this->question_category_list) { ?>
+						<select name="category_id" class="collapse" id="category_id">
+							<option value="0">- <?php _e('Выберите'); ?> -</option>
+							<?php echo $this->question_category_list; ?>
+						</select>
+						<?php } ?>
 						<div class="aw-mod aw-mod-publish">
 							<div class="mod-body">
-								<h3><?php _e('文章标题'); ?>:</h3>
-								<!-- 文章标题 -->
-								<div class="aw-publish-title<?php if (!$this->article_category_list) { ?> active<?php } ?>">
-									<input type="text" name="title" value="<?php echo $this->article_info['title']; ?>" class="form-control" />
-									<?php if ($this->article_category_list) { ?>
-									<div class="aw-dropdown aw-question-dropdown">
-										<i class="aw-icon i-dropdown-triangle active"></i>
-										<p class="title"><?php _e('没有找到相关结果'); ?></p>
-										<ul class="aw-question-dropdown-list"></ul>
+								<h3><?php _e('Сам вопрос'); ?></h3>
+								<!-- Название -->
+								<div class="aw-publish-title<?php if (!$this->question_category_list) { ?> active<?php } ?>">
+									<div>
+										<input type="text" placeholder="<?php _e('Название'); ?>..." name="question_content" id="question_contents" value="<?php echo $this->question_info['question_content']; ?>" class="form-control" />
+										<div class="aw-publish-suggest-question collapse">
+											<p class="text-color-999">На ваш вопрос, возможно, уже есть ответ</p>
+											<ul class="aw-dropdown-list">
+											</ul>
+										</div>
 									</div>
+									<?php if ($this->question_category_list) { ?>
 									<div class="dropdown">
 										<div class="dropdown-toggle" data-toggle="dropdown">
-											<span id="aw-topic-tags-select"><?php _e('选择分类'); ?></span>
-											<a href="javascript:;"><i class="icon icon-down"></i></a></a>
+											<span id="aw-topic-tags-select" class="aw-hide-txt"><?php _e('Выбор категории'); ?></span>
+											<a href="javascript:;"><i class="icon icon-down"></i></a>
 										</div>
 									</div>
 									<?php } ?>
 								</div>
-								<!-- end 文章标题 -->
+								<!-- end  -->
 
-								<h3><?php _e('文章内容'); ?>:</h3>
+								<h3><?php _e(' Опишите вопрос более подробно (опционально)'); ?>:</h3>
 								<div class="aw-mod aw-editor-box">
 									<div class="mod-head">
 										<div class="wmd-panel">
-											<textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="15" name="message"><?php echo $this->article_info['message']; ?></textarea>
+								            <textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="15" name="question_detail"><?php echo $this->question_info['question_detail']; ?></textarea>
 								        </div>
 									</div>
 									<div class="mod-body">
-										<p class="text-color-999"><span class="pull-right" id="question_detail_message">&nbsp;</span></p>
-										<?php if (get_setting('upload_enable') == 'Y' AND get_setting('advanced_editor_enable' == 'Y')) { ?>
+										<span class="pull-right text-color-999" id="question_detail_message">&nbsp;</span>
+										<?php if (get_setting('upload_enable') == 'Y') { ?>
 										<div class="aw-upload-box">
-											<a class="btn btn-default">上传附件</a>
+											<a class="btn btn-default">Загрузить</a>
 											<div class="upload-container"></div>
-											<span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('允许的附件文件类型'); ?>: <?php echo get_setting('allowed_upload_types'); ?></span>
+											<span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('разрешенные'); ?> : <?php echo get_setting('allowed_upload_types'); ?></span>
 										</div>
 										<?php } ?>
 									</div>
 								</div>
-
-								<h3><?php _e('添加话题'); ?>:</h3>
+								<?php if (!$this->question_info['question_id']) { ?>
+								<h3><?php _e('Добавить тему'); ?>:</h3>
 								<div class="aw-topic-bar" data-type="publish">
 									<div class="tag-bar clearfix">
 										<?php if ($_GET['topic_title']) { ?>
@@ -77,7 +83,7 @@
 											<a class="close" onclick="$(this).parents('.topic-tag').remove();">
 												<i class="icon icon-delete"></i>
 											</a>
-											<button class="close aw-close" onclick="">×</button></span><input type="hidden" value="<?php echo urldecode($_GET['topic_title']); ?>" name="topics[]" />
+											<input type="hidden" value="<?php echo urldecode($_GET['topic_title']); ?>" name="topics[]" />
 										</span>
 										<?php } ?>
 
@@ -88,21 +94,14 @@
 											<input type="hidden" value="<?php echo $val; ?>" name="topics[]" />
 										</span>
 										<?php } ?>
-										<?php } else if ($this->article_topics) { ?>
-										<?php foreach ($this->article_topics AS $key => $val) { ?>
-										<span class="topic-tag">
-											<a class="text"><?php echo $val['topic_title']; ?></a>
-											<input type="hidden" value="<?php echo $val['topic_title']; ?>" name="topics[]" />
-										</span>
-										<?php } ?>
 										<?php } ?>
 
-										<span class="aw-edit-topic icon-inverse"><i class="icon icon-edit"></i> <?php _e('编辑话题'); ?></span>
+										<span class="aw-edit-topic icon-inverse"><i class="icon icon-edit"></i> <?php _e('Изменить тему'); ?></span>
+										</span>
 									</div>
 								</div>
-
 								<?php if ($this->recent_topics) { ?>
-								<h3><?php _e('最近话题'); ?>:</h3>
+								<h3><?php _e('Последние темы'); ?>:</h3>
 								<div class="aw-topic-bar">
 									<div class="topic-bar clearfix">
 										<?php foreach($this->recent_topics as $key => $val) { ?>
@@ -115,43 +114,51 @@
 									</div>
 								</div>
 								<?php } ?>
-
+								<?php } ?>
 								<?php if ($this->human_valid) { ?>
 								<div class="aw-auth-img clearfix">
+									<input class="form-control pull-right" type="text" name="seccode_verify" placeholder="Проверочный код" />
 									<em class="auth-img pull-right"><img src="" onclick="this.src = G_BASE_URL + '/account/captcha/' + Math.floor(Math.random() * 10000);" id="captcha"  /></em>
-									<input class="pull-right form-control" type="text" name="seccode_verify" placeholder="验证码" />
 								</div>
 								<?php } ?>
 							</div>
 							<div class="mod-footer clearfix">
-								<?php if (get_setting('integral_system_enabled') == 'Y') { ?><a href="integral/rule/" target="_blank">[<?php _e('积分规则'); ?>]</a><?php } ?>
+								<?php if (get_setting('integral_system_enabled') == 'Y') { ?><a href="integral/rule/" target="_blank">[<?php _e('Баллы'); ?>]</a><?php } ?>
 								<span class="aw-anonymity">
-									<?php if ($this->article_info['id'] AND ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'])) { ?>
+									<?php if ($this->question_info['question_id'] AND ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'])) { ?>
 									<label><input type="checkbox" class="pull-left" value="1" name="do_delete" />
-										<?php _e('删除文章'); ?></label>
+										<?php _e('Удалить вопрос'); ?></label>
 									<?php } ?>
+									<?php if (!$this->question_info['question_id'] AND get_setting('anonymous_enable') == 'Y') { ?>
+									<label><input type="checkbox" class="pull-left" value="1" name="anonymous" />
+										<?php _e('Анонимно'); ?></label>
+									<?php } ?>
+
 								</span>
-								<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发起'); ?></a>
+								<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('Задать'); ?></a>
 							</div>
 						</div>
 					</form>
 				</div>
-				<!-- 侧边栏 -->
+				<!-- Боковая панель -->
 				<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs">
-					<!-- 文章发起指南 -->
+				 
 					<div class="aw-mod publish-help">
 						<div class="mod-head">
-							<h3><?php _e('文章发起指南'); ?></h3>
+							<h3><?php _e('Правила'); ?></h3>
 						</div>
 						<div class="mod-body">
-							<p><b>• <?php _e('文章标题'); ?>:</b> <?php _e('请用准确的语言描述您发布的文章思想'); ?></p>
-							<p><b>• <?php _e('文章补充'); ?>:</b> <?php _e('详细补充您的文章内容, 并提供一些相关的素材以供参与者更多的了解您所要文章的主题思想'); ?></p>
-							<p><b>• <?php _e('选择话题'); ?>:</b> <?php _e('选择一个或者多个合适的话题, 让您发布的文章得到更多有相同兴趣的人参与. 所有人可以在您发布文章之后添加和编辑该文章所属的话题'); ?></p>
+							<p><b>• <?php _e('Вопрос'); ?>:</b> <?php _e('должен начинаться с Большой буквы'); ?></p>
+							<p><b>• <?php _e('Вопрос'); ?>:</b> <?php _e('должен заканчиваться знаком вопроса (?)'); ?></p>
+							</p>
+							<?php if (get_setting('integral_system_enabled') == 'Y') { ?>
+							<p><b>• <?php _e('Вопрос'); ?>：</b> <?php _e('За заданный вопрос вы потратите: %s баллов', -get_setting('integral_system_config_new_question')); ?>, <?php if (get_setting('integral_system_config_answer_change_source') == 'Y') { _e('За каждый ответ вы будете вознаграждены: %s баллами', -get_setting('integral_system_config_new_answer')); ?> ,<?php } _e('Для вашего удобства, в момент запуска этого вопроса мы хотим, чтобы иметь возможность лучше описать вашу проблему и в многофункциональной функции поиска на сайте'); ?>.</p>
+							<?php } ?>
 						</div>
 					</div>
-					<!-- end 文章发起指南 -->
+			 
 				</div>
-				<!-- end 侧边栏 -->
+				<!-- end  -->
 			</div>
 		</div>
 	</div>
@@ -159,8 +166,8 @@
 
 <script type="text/javascript">
 	var ATTACH_ACCESS_KEY = '<?php echo $this->attach_access_key; ?>';
-	var CATEGORY_ID = <?php echo $this->article_info['category_id']; ?>;
-	var PUBLISH_TYPE = 'article';
+	var CATEGORY_ID = <?php echo $this->question_info['category_id']; ?>;
+	var PUBLISH_TYPE = 'question';
 </script>
 
 <?php TPL::output('global/footer.tpl.htm'); ?>
