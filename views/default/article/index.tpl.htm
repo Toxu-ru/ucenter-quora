@@ -15,7 +15,7 @@
                             <?php } ?>
                             <?php } ?>
 
-                            <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?><span class="icon-inverse aw-edit-topic"><i class="icon icon-edit"></i> <?php if (sizeof($this->article_topics) == 0) { ?><?php _e('添加话题')?><?php } ?></span><?php } ?>
+                            <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?><span class="icon-inverse aw-edit-topic"><i class="icon icon-edit"></i> <?php if (sizeof($this->article_topics) == 0) { ?><?php _e('Добавить тему')?><?php } ?></span><?php } ?>
                         </div>
                     </div>
                     <div class="aw-mod aw-question-detail">
@@ -32,21 +32,21 @@
                                     <div class="dropdown-menu aw-dropdown pull-right" role="menu" aria-labelledby="dropdownMenu">
                                         <ul class="aw-dropdown-list">
                                             <li>
-                                                <a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/article/ajax/lock/', 'article_id=<?php echo $this->article_info['id']; ?>');"><?php if ($this->article_info['lock']) { ?><?php _e('解除锁定'); ?><?php } else { ?><?php _e('锁定文章'); ?><?php } ?></a>
+                                                <a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/article/ajax/lock/', 'article_id=<?php echo $this->article_info['id']; ?>');"><?php if ($this->article_info['lock']) { ?><?php _e('Разблокировать'); ?><?php } else { ?><?php _e('Блокировать'); ?><?php } ?></a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;" onclick="AWS.dialog('confirm', {'message' : '<?php _e('确认删除?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/article/ajax/remove_article/', 'article_id=<?php echo $this->article_info['id']; ?>');});"><?php _e('删除文章'); ?></a>
+                                                <a href="javascript:;" onclick="AWS.dialog('confirm', {'message' : '<?php _e('Удалить?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/article/ajax/remove_article/', 'article_id=<?php echo $this->article_info['id']; ?>');});"><?php _e('Удалить'); ?></a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/article/ajax/set_recommend/', 'action=<?php if ($this->article_info['is_recommend']) { ?>un<?php } ?>set&article_id=<?php echo $this->article_info['id']; ?>');"><?php if ($this->article_info['is_recommend']) { ?><?php _e('取消推荐'); ?><?php } else { ?><?php _e('推荐文章'); ?><?php } ?></a>
+                                                <a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/article/ajax/set_recommend/', 'action=<?php if ($this->article_info['is_recommend']) { ?>un<?php } ?>set&article_id=<?php echo $this->article_info['id']; ?>');"><?php if ($this->article_info['is_recommend']) { ?><?php _e('Не рекоменд.'); ?><?php } else { ?><?php _e('Рекомендовать'); ?><?php } ?></a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;" onclick="AWS.dialog('recommend', {'type': 'article', 'item_id': <?php echo $this->article_info['id']; ?>, 'focus_id': <?php if ($this->article_info['chapter_id']) { echo $this->article_info['chapter_id']; } else { ?>''<?php } ?>});"><?php _e('添加到帮助中心'); ?></a>
+                                                <a href="javascript:;" onclick="AWS.dialog('recommend', {'type': 'article', 'item_id': <?php echo $this->article_info['id']; ?>, 'focus_id': <?php if ($this->article_info['chapter_id']) { echo $this->article_info['chapter_id']; } else { ?>''<?php } ?>});"><?php _e('В FAQ'); ?></a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- end 下拉菜单 -->
+                                <!-- end -->
                             </div>
                             <?php } ?>
                         </div>
@@ -84,19 +84,19 @@
 
                                 <span class="pull-right  more-operate">
                                     <?php if ((!$this->article_info['lock'] AND ($this->article_info['uid'] == $this->user_id OR $this->user_info['permission']['edit_article'])) OR $this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
-                                    <a class="text-color-999" href="publish/article/<?php echo $this->article_info['id']; ?>"><i class="icon icon-edit"></i> <?php _e('编辑'); ?></a>
+                                    <a class="text-color-999" href="publish/article/<?php echo $this->article_info['id']; ?>"><i class="icon icon-edit"></i> <?php _e('Редактировать'); ?></a>
                                     <?php } ?>
 
-                                    <?php if ($this->user_id) { ?><a href="javascript:;" onclick="AWS.dialog('favorite', {item_id:<?php echo $this->article_info['id']; ?>, item_type:'article'});" class="text-color-999"><i class="icon icon-favor"></i> <?php _e('收藏'); ?></a><?php } ?>
+                                    <?php if ($this->user_id) { ?><a href="javascript:;" onclick="AWS.dialog('favorite', {item_id:<?php echo $this->article_info['id']; ?>, item_type:'article'});" class="text-color-999"><i class="icon icon-favor"></i> <?php _e('Следовать'); ?></a><?php } ?>
 
                                     <a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
-                                        <i class="icon icon-share"></i> <?php _e('分享'); ?>
+                                        <i class="icon icon-share"></i> <?php _e('Поделиться'); ?>
                                     </a>
                                     <div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
                                         <ul class="aw-dropdown-list">
-                                            <li><a onclick="AWS.User.share_out({webid: 'tsina', content: $(this).parents('.aw-question-detail').find('.markitup-box')});"><i class="icon icon-weibo"></i> <?php _e('微博'); ?></a></li>
+                                            <li><a onclick="AWS.User.share_out({webid: 'tsina', content: $(this).parents('.aw-question-detail').find('.markitup-box')});"><i class="icon icon-weibo"></i> <?php _e('weibo'); ?></a></li>
 											<li><a onclick="AWS.User.share_out({webid: 'qzone', content: $(this).parents('.aw-question-detail')});"><i class="icon icon-qzone"></i> <?php _e('QZONE'); ?></a></li>
-											<li><a onclick="AWS.User.share_out({webid: 'weixin', content: $(this).parents('.aw-question-detail')});"><i class="icon icon-wechat"></i> <?php _e('微信'); ?></a></li>
+											<li><a onclick="AWS.User.share_out({webid: 'weixin', content: $(this).parents('.aw-question-detail')});"><i class="icon icon-wechat"></i> <?php _e('wechat'); ?></a></li>
                                         </ul>
                                     </div>
 
@@ -116,10 +116,10 @@
                         </div>
                     </div>
 
-                    <!-- 文章评论 -->
+                    <!-- Комментарии -->
                     <div class="aw-mod">
                         <div class="mod-head common-head">
-                            <h2><?php _e('%s 个评论', $this->comments_count); ?></h2>
+                            <h2><?php _e('Комментариев: %s ', $this->comments_count); ?></h2>
                         </div>
 
                         <div class="mod-body aw-feed-list">
@@ -132,7 +132,7 @@
                                             <img src="<?php echo get_avatar_url($val['uid'], 'mid'); ?>" alt="<?php echo $val['user_info']['user_name']; ?>" />
                                         </a>
                                         <p>
-                                            <a href="people/<?php echo $val['user_info']['url_token']; ?>"><?php echo $val['user_info']['user_name']; ?></a><?php if ($val['at_user_info']) { ?> <?php _e('回复'); ?> <a href="people/<?php echo $val['at_user_info']['url_token']; ?>"><?php echo $val['at_user_info']['user_name']; ?></a><?php } ?>
+                                            <a href="people/<?php echo $val['user_info']['url_token']; ?>"><?php echo $val['user_info']['user_name']; ?></a><?php if ($val['at_user_info']) { ?> <?php _e('ответил:'); ?> <a href="people/<?php echo $val['at_user_info']['url_token']; ?>"><?php echo $val['at_user_info']['user_name']; ?></a><?php } ?>
                                         </p>
                                     </div>
                                     <div class="mod-body">
@@ -144,10 +144,10 @@
                                         <div class="meta">
                                             <span class="pull-right text-color-999"><?php echo date_friendly($val['add_time']); ?></span>
                                             <?php if ($this->user_id) { ?>
-                                                <a class="text-color-999 <?php if ($val['vote_info']['rating'] == 1) { ?> active<?php } ?>" onclick="AWS.User.article_comment_vote($(this), <?php echo $val['id']; ?>, 1)"><i class="icon icon-agree"></i> <?php echo $val['votes']; ?> <?php if ($val['vote_info']['rating'] == 1) { ?><?php _e('我已赞'); ?><?php } else { ?><?php _e('赞'); ?><?php } ?></a>
-                                                <a class="aw-article-comment text-color-999" data-id="<?php echo $val['user_info']['uid']; ?>"><i class="icon icon-comment"></i> <?php _e('回复'); ?></a>
+                                                <a class="text-color-999 <?php if ($val['vote_info']['rating'] == 1) { ?> active<?php } ?>" onclick="AWS.User.article_comment_vote($(this), <?php echo $val['id']; ?>, 1)"><i class="icon icon-agree"></i> <?php echo $val['votes']; ?> <?php if ($val['vote_info']['rating'] == 1) { ?><?php _e('Оценил'); ?><?php } else { ?><?php _e('Нравится'); ?><?php } ?></a>
+                                                <a class="aw-article-comment text-color-999" data-id="<?php echo $val['user_info']['uid']; ?>"><i class="icon icon-comment"></i> <?php _e('Ответить'); ?></a>
                                                 <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
-                                                <a class="text-color-999" onclick="AWS.dialog('confirm', {'message' : '<?php _e('确认删除?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/article/ajax/remove_comment/', 'comment_id=<?php echo $val['id']; ?>');});"><i class="icon icon-trash"></i> <?php _e('删除'); ?></a>
+                                                <a class="text-color-999" onclick="AWS.dialog('confirm', {'message' : '<?php _e('Подтвердить удаление?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/article/ajax/remove_comment/', 'comment_id=<?php echo $val['id']; ?>');});"><i class="icon icon-trash"></i> <?php _e('Удалить'); ?></a>
                                                 <?php } ?>
                                             <?php } ?>
                                         </div>
@@ -160,7 +160,7 @@
                         <?php if ($_GET['item_id']) { ?>
                         <div class="mod-footer">
                                 <a href="article/<?php echo $this->article_info['id']; ?>" class="aw-load-more-content">
-                                    <span><?php _e('查看全部评论'); ?></span>
+                                    <span><?php _e('Просмотреть все комментарии'); ?></span>
                                 </a>
                         </div>
                         <?php } ?>
@@ -169,15 +169,15 @@
                             <div class="clearfix"><?php echo $this->pagination; ?></div>
                         <?php } ?>
                     </div>
-                    <!-- end 文章评论 -->
+                    <!-- end -->
 
-                    <!-- 回复编辑器 -->
+                    <!-- Ответы -->
                     <div class="aw-mod aw-article-replay-box">
                         <a name="answer_form"></a>
                         <?php if ($this->article_info['lock']) { ?>
-                        <p align="center"><?php _e('该文章目前已经被锁定, 无法添加新评论'); ?></p>
+                        <p align="center"><?php _e('Статья теперь заблокирована и неё не может быть добавлен комментарий'); ?></p>
                         <?php } else if (!$this->user_id) { ?>
-                        <p align="center"><?php _e('要回复文章请先<a href="account/login/">登录</a>或<a href="account/register/">注册</a>'); ?></p>
+                        <p align="center"><?php _e('Для ответа вам надо <a href="account/login/">войти</a> или <a href="account/register/">зарегистрироваться</a>'); ?></p>
                         <?php } else { ?>
                         <form action="article/ajax/save_comment/" onsubmit="return false;" method="post" id="answer_form">
                         <input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
@@ -186,27 +186,27 @@
                             <a href="people/" class="aw-user-name"><img alt="<?php echo $this->user_info['user_name']; ?>" src="<?php echo get_avatar_url($this->user_info['uid'], 'mid'); ?>" /></a>
                         </div>
                         <div class="mod-body">
-                            <textarea rows="3" name="message" id="comment_editor" class="form-control autosize" placeholder="写下你的评论..."  /></textarea>
+                            <textarea rows="3" name="message" id="comment_editor" class="form-control autosize" placeholder="Написать свой комментарий ..."  /></textarea>
                         </div>
                         <div class="mod-footer clearfix">
-                            <a href="javascript:;" onclick="AWS.ajax_post($('#answer_form'), AWS.ajax_processer, 'reply');" class="btn btn-normal btn-success pull-right btn-submit btn-reply"><?php _e('回复'); ?></a>
+                            <a href="javascript:;" onclick="AWS.ajax_post($('#answer_form'), AWS.ajax_processer, 'reply');" class="btn btn-normal btn-success pull-right btn-submit btn-reply"><?php _e('Ответить'); ?></a>
                             <?php if ($this->human_valid) { ?>
                             <em class="auth-img pull-right"><img src="" onclick="this.src = G_BASE_URL + '/account/captcha/' + Math.floor(Math.random() * 10000);" id="captcha" /></em>
-                            <input class="pull-right form-control" type="text" name="seccode_verify" placeholder="<?php _e('验证码'); ?>" />
+                            <input class="pull-right form-control" type="text" name="seccode_verify" placeholder="<?php _e('Код'); ?>" />
                             <?php } ?>
                         </div>
                         </form>
                         <?php } ?>
                     </div>
-                    <!-- end 回复编辑器 -->
+                    <!-- end -->
                 </div>
-                <!-- 侧边栏 -->
+                <!-- Боковая панель -->
                 <div class="col-sm-12 col-md-3 aw-side-bar hidden-sm hidden-xs">
-                    <!-- 发起人 -->
+                    <!-- Автор -->
                     <?php if ($this->article_info['anonymous'] == 0) { ?>
                     <div class="aw-mod user-detail">
                         <div class="mod-head">
-                            <h3><?php _e('发起人'); ?></h3>
+                            <h3><?php _e('Автор'); ?></h3>
                         </div>
                         <div class="mod-body">
                             <dl>
@@ -216,7 +216,7 @@
                                 <dd class="pull-left">
                                     <a class="aw-user-name" href="people/<?php echo $this->article_info['user_info']['url_token']; ?>" data-id="<?php echo $this->article_info['user_info']['uid']; ?>"><?php echo $this->article_info['user_info']['user_name'];?></a>
                                     <?php if ($this->article_info['user_info']['verified']) { ?>
-                                        <i class="icon-v<?php if ($this->article_info['user_info']['verified'] == 'enterprise') { ?> i-ve<?php } ?>" title="<?php if ($this->article_info['user_info']['verified'] == 'enterprise') { ?>企业认证<?php } else { ?>个人认证<?php } ?>"></i>
+                                        <i class="icon-v<?php if ($this->article_info['user_info']['verified'] == 'enterprise') { ?> i-ve<?php } ?>" title="<?php if ($this->article_info['user_info']['verified'] == 'enterprise') { ?>Сертификация<?php } else { ?>Верификация<?php } ?>"></i>
                                     <?php } ?>
 
                                     <?php if ($this->article_info['user_info']['uid'] != $this->user_id AND $this->user_id) { ?>
@@ -231,7 +231,7 @@
                             <div class="aw-topic-bar">
                                 <div class="topic-bar clearfix">
                                     <span class="pull-left text-color-999">
-                                        <?php _e('擅长话题'); ?> : &nbsp;
+                                        <?php _e('Темы'); ?>: &nbsp;
                                     </span>
                                     <?php foreach ($this->reputation_topics AS $key => $val) { ?>
                                     <span class="topic-tag">
@@ -244,13 +244,13 @@
                         </div>
                     </div>
                     <?php } ?>
-                    <!-- end 发起人 -->
+                    <!-- end  -->
 
                     <?php if ($this->recommend_posts) { ?>
-                    <!-- 推荐内容 -->
+                    <!-- Рекомендованные -->
                     <div class="aw-mod">
                         <div class="mod-head">
-                            <h3><?php _e('推荐内容'); ?></h3>
+                            <h3><?php _e('Рекомендованные'); ?></h3>
                         </div>
                         <div class="mod-body">
                             <ul>
@@ -266,14 +266,14 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- end 推荐内容 -->
+                    <!-- end -->
                     <?php } ?>
 
                     <?php if ($this->question_related_list) { ?>
-                    <!-- 相关问题 -->
+                    <!-- Похожие вопросы -->
                     <div class="aw-mod aw-text-align-justify question-related-list">
                         <div class="mod-head">
-                            <h3><?php _e('相关问题'); ?></h3>
+                            <h3><?php _e('Похожие вопросы'); ?></h3>
                         </div>
                         <div class="mod-body font-size-12">
                             <ul>
@@ -283,10 +283,10 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- end 相关问题 -->
+                    <!-- end  -->
                     <?php } ?>
                 </div>
-                <!-- end 侧边栏 -->
+                <!-- end -->
             </div>
         </div>
     </div>
