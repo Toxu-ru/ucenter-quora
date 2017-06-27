@@ -1,8 +1,3 @@
-/*!
- * FileUpload v1.0
- * Copyright 2011-2014 Wecenter, Inc.
- * Date: 2014-06-02
- */
 function FileUpload (type, element, container, url, options, callback)
 {
 	var _this = this;
@@ -23,8 +18,8 @@ function FileUpload (type, element, container, url, options, callback)
 							'<p class="meta"></p>'+
 						'</div>'+
 		    		'</li>',
-		'deleteBtnTemplate' : '<a class="delete-file">删除</a>' ,
-		'insertBtnTemplate' : '<a class="insert-file">插入</a>'
+		'deleteBtnTemplate' : '<a class="delete-file">удалить</a>' ,
+		'insertBtnTemplate' : '<a class="insert-file">вставить</a>'
 	};
 
 	if (options.editor)
@@ -51,7 +46,7 @@ function FileUpload (type, element, container, url, options, callback)
 
 FileUpload.prototype = 
 {
-	// 初始化上传器
+	// Инициализация Uploader
 	init : function (element, container)
 	{
 		
@@ -76,7 +71,7 @@ FileUpload.prototype =
 		
 	},
 
-	// 创建表单
+	// Создание форм
 	createForm : function ()
 	{
 		var form = this.toElement('<form method="post" enctype="multipart/form-data"><input type="submit" class="submit" /></form>');
@@ -92,7 +87,7 @@ FileUpload.prototype =
 		return form;
 	},
 
-	// 创建input
+	// input
 	createInput : function ()
 	{
 		var _this = this, input = this.toElement('<input type="file" />');
@@ -111,7 +106,7 @@ FileUpload.prototype =
 		return input;
 	},
 
-	// 创建隐藏域 (wecenter定制)
+	// Создать скрытое поле
 	createHiddenInput : function(attach_id)
 	{
 		var _this = this, input = this.toElement('<input type="hidden" name="attach_ids[]" class="hidden-input" />');
@@ -121,7 +116,7 @@ FileUpload.prototype =
 		return input;
 	},
 
-	// 创建iframe
+	// iframe
 	createIframe : function ()
 	{
 		var iframe = this.toElement('<iframe></iframe>');
@@ -132,7 +127,7 @@ FileUpload.prototype =
     	return iframe;
 	},
 
-	// 添加文件列表
+	// Добавить список файлов
 	addFileList : function (input)
 	{
 		var files = $(input)[0].files;
@@ -162,7 +157,7 @@ FileUpload.prototype =
 		
 	},
 
-	// 上传功能
+	// Загрузить
 	upload : function (file, li)
 	{
 		var _this = this;
@@ -196,7 +191,7 @@ FileUpload.prototype =
 		}
         else
         {
-        	//低版本ie上传
+        	//ie
 			var iframe = this.createIframe();
 
 			if (this.options.loading_status)
@@ -224,7 +219,7 @@ FileUpload.prototype =
         }
 	},
 
-	// 从iframe获取json内容
+	// iframe json
 	getIframeContentJSON : function (iframe, container)
 	{
 		var doc = iframe.contentDocument ? iframe.contentDocument: iframe.contentWindow.document,
@@ -262,7 +257,7 @@ FileUpload.prototype =
            	this.oncallback();
 	},
 
-	// ajax完成callback
+	// ajax callback
 	oncomplete : function (xhr, li, file)
 	{
 		var _this = this, response, filesize = this.getFIleSize(file);
@@ -283,16 +278,16 @@ FileUpload.prototype =
 			}
 			else if (xhr.status == 500)
 			{
-				this.render(li, {'error':_t('内部服务器错误')}, filesize);
+				this.render(li, {'error':_t('Внутренняя ошибка сервера')}, filesize);
 			}
 			else if (xhr.status == 0)
 			{
-				this.render(li, {'error':_t('网络链接异常')}, filesize);
+				this.render(li, {'error':_t('Исключение подключения к сети')}, filesize);
 			}
 		}
 	},
 
-	// 此功能配合编辑器
+	// Эта функция с редактором
 	oncallback : function ()
 	{
 		if (this.callback)
@@ -301,7 +296,7 @@ FileUpload.prototype =
        	}
 	},
 
-	// 渲染缩略列表
+	// Предоставление списка миниатюр
 	render : function (element, json, filesize)
 	{
 		if (json)
@@ -341,7 +336,7 @@ FileUpload.prototype =
 					$(element).find('.meta').append(btn);
 				}
 
-				// 插入隐藏域(wecenter定制)
+				// Вставить скрытое поле (пользователь)
 				$(element).append(this.createHiddenInput(json.attach_id));
 
 				this.oncallback();
@@ -364,13 +359,13 @@ FileUpload.prototype =
         return element;
 	},
 
-	// 获取文件名
+	// Получить имя файла
 	getName : function (filename)
 	{
         return filename.replace(/.*(\/|\\)/, "");
     },
 
-    // 获取文件大小
+    // Получить Размер файла
     getFIleSize : function (file)
     {
     	var filesize;
@@ -385,7 +380,7 @@ FileUpload.prototype =
         return filesize;
     },
 
-    // 创建插入按钮
+    // Создание кнопки Insert
     createInsertBtn : function (attach_id)
     {
     	var btn = this.toElement(this.options.insertBtnTemplate), _this = this;
@@ -405,14 +400,14 @@ FileUpload.prototype =
 		return btn;
     },
 
-    // 创建删除按钮
+    // Создание кнопки удаления
    	createDeleteBtn : function (url)
    	{
    		var btn = this.toElement(this.options.deleteBtnTemplate);
 
    		$(btn).click(function()
 		{
-			if (confirm('确认删除?'))
+			if (confirm('Подтвердить удаление?'))
 			{
 				var _this = this;
 				$.get(url, function (result)
@@ -432,7 +427,7 @@ FileUpload.prototype =
 		return btn;
    	},
 
-   	// 初始化文件列表
+   	// Список файлов инициализации
     setFileList : function (json)
     {
     	var template = '<li>';
@@ -464,4 +459,3 @@ FileUpload.prototype =
     	$(this.container).find('.upload-list').append(template);
     }
 }
-
