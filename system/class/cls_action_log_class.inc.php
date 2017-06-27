@@ -1,26 +1,14 @@
 <?php
-/*
-+--------------------------------------------------------------------------
-|   WeCenter [#RELEASE_VERSION#]
-|   ========================================
-|   by WeCenter Software
-|   © 2011 - 2014 WeCenter. All Rights Reserved
-|   http://www.wecenter.com
-|   ========================================
-|   Support: WeCenter@qq.com
-|
-+---------------------------------------------------------------------------
-*/
 
 class ACTION_LOG
 {
-	const CATEGORY_QUESTION = 1;	// 问题
+	const CATEGORY_QUESTION = 1;	// вопросы
 
-	const CATEGORY_ANSWER = 2;	// 回答
+	const CATEGORY_ANSWER = 2;	// ответы
 
-	const CATEGORY_COMMENT = 3;	// 评论
+	const CATEGORY_COMMENT = 3;	// комментраии
 
-	const CATEGORY_TOPIC = 4;	// 话题
+	const CATEGORY_TOPIC = 4;	// темы
 
 
 	const ADD_QUESTION = 101;	// 添加问题
@@ -356,46 +344,46 @@ class ACTION_LOG
 			case self::ADD_QUESTION:
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题发起了一个问题');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> в <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('в теме был задан вопрос: ');
 				}
 				else if ($associate_question_info['anonymous'])
 				{
-					$action_string = AWS_APP::lang()->_t('匿名用户') . ' ' . AWS_APP::lang()->_t('发起了问题');
+					$action_string = AWS_APP::lang()->_t('анонимный') . ' ' . AWS_APP::lang()->_t('з');
 				}
 				else
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('发起了问题');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('задал вопрос');
 				}
 				break;
 
 			case self::ADD_REQUESTION_FOCUS:
-				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('关注了该问题');;
+				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('подписался на вопрос');;
 				break;
 
 			case self::ANSWER_QUESTION:
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题新增了一个回答');
+					$action_string = '<a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('Добавлен раздел, чтобы ответить');
 				}
 				else
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('回答了问题');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('Он ответил на вопросы');
 				}
 				break;
 
 			case self::ADD_AGREE: // '增加赞同'
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题添加了一个回复赞同');
+					$action_string = '<a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('Добавлена тема согласованный ответ');
 				}
 				else
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('赞同了该回复');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('Мы одобрили ответ');
 				}
 				break;
 
 			case self::ADD_LIKE_PROJECT: // '增加赞同'
-				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('喜欢了该活动');
+				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('нравится вопрос');
 				break;
 
 			case self::ADD_TOPIC : // '添加话题',
@@ -403,7 +391,7 @@ class ACTION_LOG
 				{
 					if (isset($associate_topic_info[0]))
 					{
-						$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('将该问题添加到');
+						$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t(' добавил тему ');
 
 						foreach ($associate_topic_info as $key => $val)
 						{
@@ -424,56 +412,56 @@ class ACTION_LOG
 
 						if (sizeof($associate_topic_info) > 3)
 						{
-							$action_string .= AWS_APP::lang()->_t('等') . ' ';
+							$action_string .= AWS_APP::lang()->_t('подождите') . ' ';
 						}
 
-						$action_string .= AWS_APP::lang()->_t('话题');
+						$action_string .= AWS_APP::lang()->_t('в вопросе: ');
 					}
 					else
 					{
-						$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('将该问题添加到') . ' <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题');
+						$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('добавил тему ') . ' <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('в вопросе: ');
 					}
 				}
 				else
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('添加了一个话题');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('добавил тему');
 				}
 				break;
 
-			case self::ADD_TOPIC_FOCUS : // '关注话题',
-				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('关注话题');
+			case self::ADD_TOPIC_FOCUS : // 'следует за темой',
+				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('следует за темой');
 				break;
 
 			case self::ADD_ARTICLE :
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题发表了文章');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> в <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t(' добавил тему в статью: ');
 				}
 				else
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('发表了文章');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('опубликовал статью: ');
 				}
 				break;
 
 			case self::ADD_AGREE_ARTICLE :
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题添加了一个文章赞同');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> в <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('Добавлена тема согласовывается с статьей');
 				}
 				else
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('赞同了该文章');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('Мы одобрили эту статью');
 				}
 				break;
 
 			case self::ADD_COMMENT_ARTICLE :
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题添加了一个文章评论');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> в <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('Добавить темы Обзор статей');
 				}
 				else
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('评论了该文章');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('добавил комментарий в статью: ');
 				}
 				break;
 		}
