@@ -10,10 +10,10 @@
 				</div>
 				<div class="mod-body">
 					<dl>
-						<dt><?php _e('是否允许别人访问我的微博'); ?> : </dt>
+						<dt><?php _e('Позволить другому участнику доступ к моему микро-блог'); ?> : </dt>
 						<dd>
-							<label><input type="radio" value="1" name="weibo_visit"<?php if ($this->user_info['weibo_visit'] == 1) { ?> checked="checked"<?php } ?> /> <?php _e('是'); ?></label>
-							<label><input type="radio" value="0" name="weibo_visit"<?php if (!$this->user_info['weibo_visit']) { ?> checked="checked"<?php } ?> /> <?php _e('否'); ?></label>
+							<label><input type="radio" value="1" name="weibo_visit"<?php if ($this->user_info['weibo_visit'] == 1) { ?> checked="checked"<?php } ?> /> <?php _e('Да'); ?></label>
+							<label><input type="radio" value="0" name="weibo_visit"<?php if (!$this->user_info['weibo_visit']) { ?> checked="checked"<?php } ?> /> <?php _e('Нет'); ?></label>
 						</dd>
 					</dl>
 				</div>
@@ -21,14 +21,14 @@
 			
 			<div class="aw-mod">
 				<div class="mod-head">
-					<h3><?php _e('私信设置'); ?></h3>
+					<h3><?php _e('Сообщения'); ?></h3>
 				</div>
 				<div class="mod-body">
 					<dl>
-						<dt><?php _e('谁可以给我发私信'); ?> :</dt>
+						<dt><?php _e('Кто может отправлять мне личные сообщения'); ?> :</dt>
 						<dd>
-							<label><input type="radio"value="0" name="inbox_recv"<?php if (!$this->user_info['inbox_recv']) { ?> checked="checked"<?php } ?> /> <?php _e('所有人'); ?></label>
-							<label><input type="radio"value="1" name="inbox_recv"<?php if ($this->user_info['inbox_recv'] == 1) { ?> checked="checked"<?php } ?> /> <?php _e('我关注的人'); ?></label>
+							<label><input type="radio"value="0" name="inbox_recv"<?php if (!$this->user_info['inbox_recv']) { ?> checked="checked"<?php } ?> /> <?php _e('Все'); ?></label>
+							<label><input type="radio"value="1" name="inbox_recv"<?php if ($this->user_info['inbox_recv'] == 1) { ?> checked="checked"<?php } ?> /> <?php _e('На кого я подписан'); ?></label>
 						</dd>
 					</dl>
 				</div>
@@ -36,35 +36,35 @@
 			
 			<div class="aw-mod">
 				<div class="mod-head">
-					<h3><?php _e('邮件设置'); ?></h3>
+					<h3><?php _e('Настройки почты'); ?></h3>
 				</div>
 				<div class="mod-body">
 					<dl>
-						<dt><?php _e('什么情况下给我发邮件'); ?> :</dt>
+						<dt><?php _e('При каких обстоятельствах, мне идет почта'); ?> :</dt>
 						<dd>
 							<span>
 								<label>
-									<input name="email_settings[]" value="FOLLOW_ME" type="checkbox"<?php if ($this->user_info['email_settings']['FOLLOW_ME'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('当有人关注我'); ?>
+									<input name="email_settings[]" value="FOLLOW_ME" type="checkbox"<?php if ($this->user_info['email_settings']['FOLLOW_ME'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('На меня подписались'); ?>
 								</label>
 							</span>
 							<span>
 								<label>
-									<input name="email_settings[]" value="QUESTION_INVITE" type="checkbox"<?php if ($this->user_info['email_settings']['QUESTION_INVITE'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('有人邀请我回答问题'); ?>
+									<input name="email_settings[]" value="QUESTION_INVITE" type="checkbox"<?php if ($this->user_info['email_settings']['QUESTION_INVITE'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('Меня пригласили'); ?>
 								</label>
 							</span>
 							<span>
 								<label>
-									<input name="email_settings[]" value="NEW_ANSWER" type="checkbox"<?php if ($this->user_info['email_settings']['NEW_ANSWER'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('我关注的问题有了新回复'); ?>
+									<input name="email_settings[]" value="NEW_ANSWER" type="checkbox"<?php if ($this->user_info['email_settings']['NEW_ANSWER'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('Новый ответ'); ?>
 								</label>
 							</span>
 							<span>
 								<label>
-									<input name="email_settings[]" value="NEW_MESSAGE" type="checkbox"<?php if ($this->user_info['email_settings']['NEW_MESSAGE'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('有人向我发送私信'); ?>
+									<input name="email_settings[]" value="NEW_MESSAGE" type="checkbox"<?php if ($this->user_info['email_settings']['NEW_MESSAGE'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('Личное сообщение'); ?>
 								</label>
 							</span>
 							<span>
 								<label>
-									<input name="email_settings[]" value="QUESTION_MOD" type="checkbox"<?php if ($this->user_info['email_settings']['QUESTION_MOD'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('我的问题被编辑'); ?>
+									<input name="email_settings[]" value="QUESTION_MOD" type="checkbox"<?php if ($this->user_info['email_settings']['QUESTION_MOD'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('Мой вопрос редактировали'); ?>
 								</label>
 							</span>
 						</dd>
@@ -75,15 +75,15 @@
 			<?php if (get_setting('weixin_app_id')) { ?>
 			<div class="aw-mod">
 				<div class="mod-head">
-					<h3><?php _e('微信设置'); ?></h3>
+					<h3><?php _e('Другое'); ?></h3>
 				</div>
 				<div class="mod-body">
 					<dl>
-						<dt><?php _e('什么情况下给我发通知'); ?> :</dt>
+						<dt><?php _e('Уведомлять'); ?> :</dt>
 						<dd>
 							<span>
 								<label>
-									<input name="weixin_settings[]" value="AT_ME" type="checkbox"<?php if ($this->user_info['weixin_settings']['AT_ME'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('当有人 @ 我'); ?>
+									<input name="weixin_settings[]" value="AT_ME" type="checkbox"<?php if ($this->user_info['weixin_settings']['AT_ME'] != 'N') { ?> checked="checked"<?php } ?> /> <?php _e('weixin @ '); ?>
 								</label>
 							</span>
 							<span>
@@ -114,11 +114,11 @@
 
 			<div class="aw-mod">
 				<div class="mod-head">
-					<h3><?php _e('通知设置'); ?></h3>
+					<h3><?php _e('Настройки уведомлений'); ?></h3>
 				</div>
 				<div class="mod-body">
 					<dl>
-						<dt><?php _e('什么情况下给我发送通知'); ?> :</dt>
+						<dt><?php _e('При каких обстоятельствах отправить уведомление мне'); ?> :</dt>
 						<dd>
 							<?php foreach($this->notify_actions as $key => $val) { ?>
 		                    <?php if ($val['user_setting']) { ?>
@@ -136,7 +136,7 @@
 		</form>
 	</div>
 	<div class="mod-footer clearfix">
-		<a href="javascript:;" class="btn btn-large btn-success pull-right" onclick="AWS.ajax_post($('#setting_form'));"><?php _e('保存'); ?></a>
+		<a href="javascript:;" class="btn btn-large btn-success pull-right" onclick="AWS.ajax_post($('#setting_form'));"><?php _e('Сохранить'); ?></a>
 	</div>
 </div>
 
