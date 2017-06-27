@@ -5,35 +5,35 @@
 	<div class="mod-body">
 		<div class="aw-mod">
 			<div class="mod-head">
-				<h3><?php _e('申请认证'); ?></h3>
+				<h3><?php _e('Сертификация'); ?></h3>
 			</div>
 			<form id="verify_form" method="post" action="account/ajax/verify/" enctype="multipart/form-data" class="form-horizontal">
 				<div class="mod-body">
 					<div class="form-group">
-						<label class="col-lg-2 control-label"><?php _e('当前状态'); ?>:</label>
+						<label class="col-lg-2 control-label"><?php _e('Текущее состояние'); ?>:</label>
 						<div class="col-lg-10">
 							<?php if ($this->user_info['verified']) { ?>
-							<?php _e('已认证'); ?>
+							<?php _e('Заверенный'); ?>
 							<?php } else if (!isset($this->verify_apply['status'])) { ?>
-							<?php _e('未认证'); ?>
+							<?php _e('Unauthenticated'); ?>
 							<?php } else if ($this->verify_apply['status'] == 0) { ?>
-							<?php _e('正在审核'); ?>
+							<?php _e('Рассматривается'); ?>
 							<?php } else if ($this->verify_apply['status'] == 1) { ?>
-							<?php _e('已认证'); ?>
+							<?php _e('заверенный'); ?>
 							<?php } else if ($this->verify_apply['status'] == -1) { ?>
-							<?php _e('认证被拒绝'); ?>
+							<?php _e('Было отказано'); ?>
 							<?php } ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 control-label"><?php _e('认证类型'); ?>:</label>
+						<label class="col-lg-2 control-label"><?php _e('Тип аутентификации'); ?>:</label>
 						<div class="col-lg-10">
-						    <input name="type" class="apply-type" type="radio" value="personal" id="type_personal"<?php if (!$this->verify_apply['type'] OR $this->verify_apply['type'] == 'personal') { ?> checked="checked"<?php } ?> /> <?php _e('个人认证'); ?> &nbsp;
-						    <input name="type" class="apply-type" type="radio" value="enterprise" id="type_enterprise"<?php if ($this->verify_apply['type'] == 'enterprise') { ?> checked="checked"<?php } ?> /> <?php _e('机构认证'); ?>
+						    <input name="type" class="apply-type" type="radio" value="personal" id="type_personal"<?php if (!$this->verify_apply['type'] OR $this->verify_apply['type'] == 'personal') { ?> checked="checked"<?php } ?> /> <?php _e('Персональная аутентификация'); ?> &nbsp;
+						    <input name="type" class="apply-type" type="radio" value="enterprise" id="type_enterprise"<?php if ($this->verify_apply['type'] == 'enterprise') { ?> checked="checked"<?php } ?> /> <?php _e('Соответствие требованиям'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 control-label verify-name"><span><?php _e('真实姓名'); ?></span>:</label>
+						<label class="col-lg-2 control-label verify-name"><span><?php _e('Настоящее имя'); ?></span>:</label>
 						<div class="col-lg-4">
 						    <input class="form-control" name="name" type="text" value="<?php echo $this->verify_apply['name']; ?>" />
 						</div>
@@ -41,37 +41,37 @@
 					
 					<div class="form-group">
 						<label class="col-lg-2 control-label verify-code">
-							<span><?php _e('身份证号码'); ?></span>:</label>
+							<span><?php _e('Номер паспорта'); ?></span>:</label>
 						<div class="col-lg-4">
 						    <input class="form-control" name="id_code" type="text" value="<?php echo $this->verify_apply['data']['id_code']; ?>" />
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-lg-2 control-label"><?php _e('联系方式'); ?>:</label>
+						<label class="col-lg-2 control-label"><?php _e('Кем выдан'); ?>:</label>
 						<div class="col-lg-8">
 						    <input class="form-control" name="contact" type="text" value="<?php echo $this->verify_apply['data']['contact']; ?>" />
 						</div>
 					</div>   
 					<div class="form-group">
-						<label class="col-lg-2 control-label"><?php _e('认证说明'); ?>:</label>
+						<label class="col-lg-2 control-label"><?php _e('Прописка'); ?>:</label>
 						<div class="col-lg-8">
 						    <input class="form-control" name="reason" type="text" value="<?php echo $this->verify_apply['reason']; ?>" />
 						</div>
 					</div> 
 					<div class="form-group" id="upload-attach">
-						<label class="col-lg-2 control-label"><?php _e('附件'); ?>:</label>
+						<label class="col-lg-2 control-label"><?php _e('Документ'); ?>:</label>
 						<div class="col-lg-8">
-							<a class="btn btn-mini btn-default"><?php _e('上传附件'); ?></a>
+							<a class="btn btn-mini btn-default"><?php _e('Загрузить документ'); ?></a>
 							<span class="text-color-999 upload-url"></span>
-							<p class="text-color-999"><?php _e('请提交对应的身份证或者组织机构代码证件扫描'); ?></p>
+							<p class="text-color-999"><?php _e('Просьба представить соответствующие документы, удостоверяющие личность'); ?></p>
 							<input name="attach" type="file" class="upload-attach form-control collapse" onchange="$('.upload-url').html($(this).val());"/>
 						</div>
 					</div>  
 				</div>
 			</form>
 			<div class="mod-footer clearfix">
-				<a href="javascript:;" id="submit-form" class="btn btn-large btn-success pull-right" onclick="AWS.ajax_post($('#verify_form'))"><?php _e('提交'); ?></a>
+				<a href="javascript:;" id="submit-form" class="btn btn-large btn-success pull-right" onclick="AWS.ajax_post($('#verify_form'))"><?php _e('Подать заявку'); ?></a>
 			</div>
 		</div>
 	</div>
@@ -84,14 +84,14 @@
 	{
 		$('#type_personal').click(function()
 		{
-			$('.verify-name span').html(_t('真实姓名'));
-			$('.verify-code span').html(_t('身份证号码'));
+			$('.verify-name span').html(_t('Настоящее имя'));
+			$('.verify-code span').html(_t('Номер паспорта'));
 		});
 		
 		$('#type_enterprise').click(function()
 		{
-			$('.verify-name span').html(_t('企业名称'));
-			$('.verify-code span').html(_t('组织机构代码'));
+			$('.verify-name span').html(_t('Название компании'));
+			$('.verify-code span').html(_t('Код организации'));
 		});
 		
 		$('input.apply-type:checked').click();
