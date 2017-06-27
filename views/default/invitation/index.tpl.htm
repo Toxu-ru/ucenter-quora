@@ -7,15 +7,15 @@
 				<div class="col-sm-12 col-md-9 aw-main-content">
 					<div class="aw-mod aw-mod-invite-friend">
 						<div class="mod-head common-head">
-							<h2><?php _e('邀请好友加入社区'); ?></h2>
+							<h2><?php _e('Приглашения'); ?></h2>
 						</div>
 						<div class="mod-body">
 							<form id="invitation_form" method="post" action="invitation/ajax/invite/" onsubmit="return false">
 								<div class="content">
-									<input class="form-control" type="text" name="email" placeholder="<?php _e('请输入好友邮箱'); ?>..." />
+									<input class="form-control" type="text" name="email" placeholder="<?php _e('Пожалуйста, введите Email ваших друзей'); ?>..." />
 									<p>
-										<a class="pull-right btn btn-mini btn-success" onclick="AWS.ajax_post($('#invitation_form')); return false;"><?php _e('发送邀请'); ?></a>
-										<?php _e('你还有'); ?> <?php _e('%s 个邀请名额', '<span class="aw-text-color-blue">' . $this->user_info['invitation_available'] . '</span>'); ?>
+										<a class="pull-right btn btn-mini btn-success" onclick="AWS.ajax_post($('#invitation_form')); return false;"><?php _e('Отправить приглашение'); ?></a>
+										<?php _e('У вас есть'); ?> <?php _e('%s приглашений', '<span class="aw-text-color-blue">' . $this->user_info['invitation_available'] . '</span>'); ?>
 									</p>
 								</div>
 							</form>
@@ -23,25 +23,25 @@
 					</div>
 					<div class="aw-mod aw-invite-list">
 						<div class="mod-head common-head">
-							<h2><?php _e('已邀请好友'); ?></h2>
+							<h2><?php _e('Пригласил друзей'); ?></h2>
 						</div>
 						<div class="mod-body">
 							<ul id="invitation_list"></ul>
 						</div>
 						<div class="mod-footer">
-							<!-- 加载更多内容 -->
+							<!-- Загрузить еще -->
 							<a class="aw-load-more-content" id="invitation_more">
-								<span><?php _e('更多'); ?>...</span>
+								<span><?php _e('Далее'); ?>...</span>
 							</a>
-							<!-- end 加载更多内容 -->
+							<!-- end  -->
 						</div>
 					</div>
 				</div>
-				<!-- 侧边栏 -->
+				<!-- Боковая панель -->
 				<div class="col-sm-12 col-md-3 aw-side-bar">
 					<?php TPL::output('block/sidebar_menu.tpl.htm'); ?>
 				</div>
-				<!-- end 侧边栏 -->
+				<!-- end  -->
 			</div>
 		</div>
 	</div>
