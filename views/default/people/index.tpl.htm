@@ -17,7 +17,12 @@
                                 <?php } ?>
                             </span>
                             <h1><?php echo $this->user['user_name']; ?> <?php if ($this->user['verified']) { ?><i class="icon-v <?php if ($this->user['verified'] == 'enterprise') { ?> i-ve<?php } ?>" title="<?php if ($this->user['verified'] == 'enterprise') { ?>Сертифиация<?php } else { ?>Верификация<?php } ?>"></i><?php } ?></h1>
-                            <p class="text-color-999"><?php echo $this->user['signature']; ?></p>
+
+							<!-- Показывает статус, если репутация > 5 -->                           
+                           <?php if ($this->user['reputation'] >5) { ?>
+                           <p class="text-color-999"><?php echo $this->user['signature']; ?></p>
+                           <?php } ?>						   
+						   
                             <p class="aw-user-flag">
                                 <?php if ($this->user['province']) { ?>
                                 <span>
@@ -274,7 +279,7 @@
                             <div class="tab-pane" id="actions">
                                 <div class="aw-mod">
                                     <div class="mod-head">
-                                        <h3><?php _e('最新动态'); ?></h3>
+                                        <h3><?php _e('Активность'); ?></h3>
                                     </div>
                                     <div class="mod-body">
                                         <div id="contents_user_actions"></div>
@@ -291,31 +296,31 @@
                             <div class="tab-pane" id="detail">
                                 <div class="aw-mod">
                                     <div class="mod-head">
-                                        <h3><?php _e('详细资料'); ?></h3>
+                                        <h3><?php _e('Детали'); ?></h3>
                                     </div>
                                     <div class="mod-body aw-user-center-details">
                                         <?php if (get_setting('sina_weibo_enabled') == 'Y' AND $this->sina_weibo_url) { ?>
                                         <dl>
-                                            <dt><span><?php _e('绑定认证'); ?>:</span></dt>
-                                            <?php if ($this->sina_weibo_url AND get_setting('sina_weibo_enabled') == 'Y') { ?><dd><a href="<?php if ($this->sina_weibo_url) { ?><?php echo $this->sina_weibo_url; ?><?php } else { ?>javascript:;<?php } ?>" class="text-color-999"><i class="icon icon-weibo"></i><?php _e('微博'); ?></a></dd><?php } ?>
+                                            <dt><span><?php _e('Связанные'); ?>:</span></dt>
+                                            <?php if ($this->sina_weibo_url AND get_setting('sina_weibo_enabled') == 'Y') { ?><dd><a href="<?php if ($this->sina_weibo_url) { ?><?php echo $this->sina_weibo_url; ?><?php } else { ?>javascript:;<?php } ?>" class="text-color-999"><i class="icon icon-weibo"></i><?php _e('weibo'); ?></a></dd><?php } ?>
                                         </dl>
                                         <?php } ?>
                                     <dl>
-                                        <dt><span><?php _e('个人成就'); ?>:</span></dt>
+                                        <dt><span><?php _e('Личные достижения'); ?>:</span></dt>
                                         <dd>
                                             <p class="meta">
-                                                <span><i class="icon icon-prestige"></i><?php _e('威望'); ?>: <em class="aw-text-color-green"><?php echo $this->user['reputation']; ?></em></span>
+                                                <span><i class="icon icon-prestige"></i><?php _e('Репутация'); ?>: <em class="aw-text-color-green"><?php echo $this->user['reputation']; ?></em></span>
                                                 <?php if (get_setting('integral_system_enabled') == 'Y') { ?>
-                                                <span><i class="icon icon-score"></i><?php _e('积分'); ?>: <em class="aw-text-color-orange"><?php echo $this->user['integral']; ?></em></span>
+                                                <span><i class="icon icon-score"></i><?php _e('Баллы'); ?>: <em class="aw-text-color-orange"><?php echo $this->user['integral']; ?></em></span>
                                                 <?php } ?>
-                                                <span><i class="icon icon-agree"></i><?php _e('赞同'); ?>: <em class="aw-text-color-orange"><?php echo $this->user['agree_count']; ?></em></span>
-                                                <span><i class="icon icon-thank"></i><?php _e('感谢'); ?>: <em class="aw-text-color-orange"><?php echo $this->user['thanks_count']; ?></em></span>
+                                                <span><i class="icon icon-agree"></i><?php _e('Нравится'); ?>: <em class="aw-text-color-orange"><?php echo $this->user['agree_count']; ?></em></span>
+                                                <span><i class="icon icon-thank"></i><?php _e('Спасибо'); ?>: <em class="aw-text-color-orange"><?php echo $this->user['thanks_count']; ?></em></span>
                                             </p>
                                         </dd>
                                     </dl>
                                     <?php if ($this->user['area_name']) { ?>
                                     <dl>
-                                        <dt><span><?php _e('现居'); ?>:</span></dt>
+                                        <dt><span><?php _e('Проживает'); ?>:</span></dt>
                                         <dd>
                                             <?php echo $this->user['area_name']; ?>
                                         </dd>
@@ -324,12 +329,12 @@
 
                                     <?php if ($this->education_experience_list) { ?>
                                     <dl>
-                                        <dt><span><?php _e('教育经历'); ?>:</span></dt>
+                                        <dt><span><?php _e('Образование и опыт работы'); ?>:</span></dt>
                                         <dd>
                                             <ul>
                                                 <?php foreach($this->education_experience_list as $k => $v) { ?>
                                                 <li>
-                                                    <?php echo $v['education_years']; ?> <?php _e('年'); ?> <?php _e('就读于%s', $v['school_name']); ?> <?php echo $v['departments']; ?>
+                                                    <?php echo $v['education_years']; ?> <?php _e('год'); ?> <?php _e('Училась на %s', $v['school_name']); ?> <?php echo $v['departments']; ?>
                                                 </li>
                                                 <?php } ?>
                                             </ul>
@@ -339,11 +344,11 @@
 
                                     <?php if ($this->work_experience_list) { ?>
                                     <dl>
-                                        <dt><span><?php _e('职业经历'); ?>:</span></dt>
+                                        <dt><span><?php _e('Профессиональный опыт'); ?>:</span></dt>
                                         <dd>
                                             <ul>
                                             <?php foreach($this->work_experience_list as $k => $v) { ?>                     <li>
-                                                    <?php echo $v['start_year']; ?> - <?php if ($v['end_year'] == -1) { ?><?php _e('至今'); ?><?php } else { ?><?php echo $v['end_year']; ?><?php } ?> <?php _e('就职于%s', $v['company_name']); ?> <?php if ($v['job_name']) { ?> <?php _e('担任 %s', $v['job_name']); ?> <?php } ?>
+                                                    <?php echo $v['start_year']; ?> - <?php if ($v['end_year'] == -1) { ?><?php _e('Работаю до сих пор'); ?><?php } else { ?><?php echo $v['end_year']; ?><?php } ?> <?php _e('Компания %s', $v['company_name']); ?> <?php if ($v['job_name']) { ?> <?php _e('Имя %s', $v['job_name']); ?> <?php } ?>
                                                 </li>
                                             <?php } ?>
                                             </ul>
@@ -353,14 +358,14 @@
 
                                     <?php if ($this->user['last_active']) { ?>
                                     <dl>
-                                        <dt><span><?php _e('最后活跃'); ?>:</span></dt>
+                                        <dt><span><?php _e('Последняя активность'); ?>:</span></dt>
                                         <dd><?php echo date_friendly($this->user['last_active']); ?></dd>
                                     </dl>
                                     <?php } ?>
 
                                     <?php if ($this->reputation_topics) { ?>
                                     <dl>
-                                        <dt><span><?php _e('擅长话题'); ?>:</span></dt>
+                                        <dt><span><?php _e('Лучшие темы'); ?>:</span></dt>
                                         <dd class="aw-user-center-details-good-topic">
                                             <?php foreach ($this->reputation_topics AS $key => $val) { ?>
                                             <div>
@@ -383,17 +388,17 @@
                             <div class="tab-pane" id="integral">
                                 <div class="aw-mod">
                                     <div class="mod-head">
-                                        <h3><i class="icon icon-point"></i><?php _e('我的积分'); ?></h3>
+                                        <h3><i class="icon icon-point"></i><?php _e('Мои баллы'); ?></h3>
                                     </div>
                                     <div class="mod-body">
                                         <table class="table table-hover aw-table">
                                             <thead>
                                                 <tr class="info">
-                                                    <th width="14%"><?php _e('时间'); ?></th>
-                                                    <th width="8%"><?php _e('数额'); ?></th>
-                                                    <th width="8%"><?php _e('余额'); ?></th>
-                                                    <th width="17%"><?php _e('描述'); ?></th>
-                                                    <th width="40%"><?php _e('相关信息'); ?></th>
+                                                    <th width="14%"><?php _e('время'); ?></th>
+                                                    <th width="8%"><?php _e('сумма'); ?></th>
+                                                    <th width="8%"><?php _e('баланс'); ?></th>
+                                                    <th width="17%"><?php _e('описание'); ?></th>
+                                                    <th width="40%"><?php _e('инфо'); ?></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="contents_user_integral">
