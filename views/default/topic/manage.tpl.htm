@@ -7,16 +7,16 @@
 				<div class="col-sm-9 aw-main-content">
 					<div class="aw-mod">
 						<div class="mod-head common-head">
-							<h2><span class="pull-right"><a class="text-color-999" href="topic/<?php echo $this->topic_info['url_token']; ?>"><?php _e('返回话题'); ?> »</a></span><?php _e('管理话题'); ?> - <?php echo $this->topic_info['topic_title']; ?></h2>
+							<h2><span class="pull-right"><a class="text-color-999" href="topic/<?php echo $this->topic_info['url_token']; ?>"><?php _e('Вернуться к темам'); ?> »</a></span><?php _e('Управление'); ?> - <?php echo $this->topic_info['topic_title']; ?></h2>
 						</div>
 					</div>
 					<div class="aw-mod-topic-manage">
 						<dl class="dl-horizontal">
 							<form class="form-inline" action="topic/ajax/save_url_token/" method="post" id="url_token_form">
 								<input type="hidden" name="topic_id" value="<?php echo $this->topic_info['topic_id']; ?>" />
-								<dt><?php _e('话题别名'); ?>:</dt>
+								<dt><?php _e('Алиас'); ?>:</dt>
 								<dd>
-									<a class="btn btn-normal btn-success pull-right" href="javascript:;" onclick="AWS.ajax_post($('#url_token_form'));" /><?php _e('保存'); ?></a>
+									<a class="btn btn-normal btn-success pull-right" href="javascript:;" onclick="AWS.ajax_post($('#url_token_form'));" /><?php _e('Сохранить'); ?></a>
 									<script type="text/javascript">document.write(G_BASE_URL);</script>/topic/
 									<input type="text" class="form-control" name="url_token" value="<?php echo $this->topic_info['url_token']; ?>" />
 								</dd>
@@ -25,9 +25,9 @@
 						<dl class="dl-horizontal">
 							<form action="topic/ajax/save_seo_title/" method="post" id="seo_title_form">
 								<input type="hidden" name="topic_id" value="<?php echo $this->topic_info['topic_id']; ?>" />
-								<dt><?php _e('页面标题'); ?>:</dt>
+								<dt><?php _e('Название'); ?>:</dt>
 								<dd>
-									<a class="btn btn-normal btn-success pull-right" href="javascript:;" onclick="AWS.ajax_post($('#seo_title_form'));"><?php _e('保存'); ?></a>
+									<a class="btn btn-normal btn-success pull-right" href="javascript:;" onclick="AWS.ajax_post($('#seo_title_form'));"><?php _e('Сохранить'); ?></a>
 									<input type="text" class="form-control" name="seo_title" value="<?php echo $this->topic_info['seo_title']; ?>" />
 								</dd>
 							</form>
@@ -35,16 +35,16 @@
 						<dl class="dl-horizontal">
 							<form action="topic/ajax/merge_topic/" method="post" id="merge_topic_form">
 								<input type="hidden" name="target_id" value="<?php echo $this->topic_info['topic_id']; ?>" />
-								<dt><?php _e('话题合并'); ?>:</dt>
+								<dt><?php _e('Объединить'); ?>:</dt>
 								<dd>
-									<a class="btn btn-normal btn-success pull-right" onclick="AWS.ajax_post($('#merge_topic_form'));"><?php _e('合并'); ?></a>
-									<input type="text" class="form-control" name="topic_title" placeholder="<?php _e('在此输入要与该话题合并的话题'); ?>..."/>
+									<a class="btn btn-normal btn-success pull-right" onclick="AWS.ajax_post($('#merge_topic_form'));"><?php _e('Слияние'); ?></a>
+									<input type="text" class="form-control" name="topic_title" placeholder="<?php _e('Введите тему, которую вы хотите объединить с темой'); ?>..."/>
 								</dd>
 							</form>
 						</dl>
 						<?php if ($this->merged_topics_info) { ?>
 						<dl class="dl-horizontal">
-							<dt><?php _e('被合并的话题'); ?>:</dt>
+							<dt><?php _e('Другое'); ?>:</dt>
 							<dd>
 								<div class="aw-topic-bar active">
 									<div class="topic-bar clearfix">
@@ -62,7 +62,7 @@
 
 						<?php if ($this->parent_topics) { ?>
 						<dl class="dl-horizontal">
-							<dt><?php _e('根话题'); ?>:</dt>
+							<dt><?php _e('Корневая тема'); ?>:</dt>
 							<dd>
 								<select id="parent_topic_select" class="collapse" name="parent_id">
 								<option value=""> --- </option>
@@ -74,7 +74,7 @@
 								<div class="aw-publish-title">
 									<div class="dropdown">
 										<div class="dropdown-toggle">
-											<input class="aw-hide-txt" id="aw-topic-tags-select" placeholder="<?php _e(根话题); ?>" />
+											<input class="aw-hide-txt" id="aw-topic-tags-select" placeholder="<?php _e('Корневая тема'); ?>" />
 											<a class="triangle"><i class="icon icon-down"></i></a>
 										</div>
 										<div class="aw-dropdown">
@@ -91,25 +91,25 @@
 					</div>
 				</div>
 
-				<!-- 侧边栏 -->
+				<!-- Боковая панель -->
 				<div class="col-sm-3 aw-side-bar">
 					<div class="aw-mod topic-edit-help">
 						<div class="mod-head">
-							<h3><?php _e('管理话题指南'); ?></h3>
+							<h3><?php _e('Руководство'); ?></h3>
 						</div>
 						<div class="mod-body">
-							<p><b>• <?php _e('话题别名'); ?>:</b> <?php _e('如果该话题还有其他的表达方式, 您可以为其创建别名以便其他人能更好的找到该话题'); ?></p>
-							<p><b>• <?php _e('话题合并'); ?>:</b> <?php _e('如果该话题跟另一个话题意义相近, 您可以将此话题合并至其他话题'); ?></p>
+							<p><b>• <?php _e('Алиас'); ?>:</b> <?php _e('Если в теме есть и другие значения, вы можете создать псевдоним, чтобы другие могли лучше найти эту тему'); ?></p>
+							<p><b>• <?php _e('Объединить тему'); ?>:</b> <?php _e('Если есть похожие темы, то их можно объединить'); ?></p>
 						</div>
 						<div class="mod-footer">
 							<?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
-							<a onclick="AWS.ajax_request(G_BASE_URL + '/topic/ajax/lock/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');" class="btn btn-success <?php if ($this->topic_info['topic_lock']) { ?>active<?php } ?>"><?php if ($this->topic_info['topic_lock']) { ?><?php _e('解除锁定'); ?><?php } else { ?><?php _e('锁定话题'); ?><?php } ?></a>&nbsp;
-							<a onclick="AWS.dialog('confirm', {'message' : '<?php _e('确认删除?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/topic/ajax/remove/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');});" class="btn btn-gray"><?php _e('删除话题'); ?></a>
+							<a onclick="AWS.ajax_request(G_BASE_URL + '/topic/ajax/lock/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');" class="btn btn-success <?php if ($this->topic_info['topic_lock']) { ?>active<?php } ?>"><?php if ($this->topic_info['topic_lock']) { ?><?php _e('Открыть'); ?><?php } else { ?><?php _e('Закрыть'); ?><?php } ?></a>&nbsp;
+							<a onclick="AWS.dialog('confirm', {'message' : '<?php _e('Вы точно хотите удалить?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/topic/ajax/remove/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');});" class="btn btn-gray"><?php _e('Удалить'); ?></a>
 							<?php } ?>
 						</div>
 					</div>
 				</div>
-				<!-- end 侧边栏 -->
+				<!-- end  -->
 			</div>
 		</div>
 	</div>
@@ -118,13 +118,13 @@
 <script>
 	$(function()
 	{
-		// 根话题选择
+		// Выберите корневой раздел
 		$.each($('#parent_topic_select option'), function (i, e)
 		{
 			$('.aw-publish-title .aw-dropdown-list').append('<li data-value="' + $(this).attr('value') + '"><a href="javascript:;" >' + $(this).html() + '</a></li>');
 		});
 
-		// 初始化给input赋值
+		// input
 		if ($('#parent_topic_select option[selected=selected]').text())
 		{
 			$('.aw-publish-title #aw-topic-tags-select').val($('#parent_topic_select option[selected=selected]').text());
