@@ -10,14 +10,14 @@
 							<div class="tabbable">
 								<ul class="nav nav-tabs aw-nav-tabs active" id="list_nav">
 									<?php if (!$_GET['is_recommend']) { ?>
-									<li><a href="#users" data-toggle="tab"><?php _e('用户'); ?></a></li>
-									<li><a href="#topics" data-toggle="tab"><?php _e('话题'); ?></a></li>
+									<li><a href="#users" data-toggle="tab"><?php _e('пользователям'); ?></a></li>
+									<li><a href="#topics" data-toggle="tab"><?php _e('темам'); ?></a></li>
 									<?php } ?>
-									<li><a href="#questions" data-toggle="tab"><?php _e('问题'); ?></a></li>
-									<li><a href="#articles" data-toggle="tab"><?php _e('文章'); ?></a></li>
-									<li class="active"><a href="#all" data-toggle="tab"><?php _e('全部'); ?></a></li>
+									<li><a href="#questions" data-toggle="tab"><?php _e('вопросам'); ?></a></li>
+									<li><a href="#articles" data-toggle="tab"><?php _e('статьям'); ?></a></li>
+									<li class="active"><a href="#all" data-toggle="tab"><?php _e('по всему'); ?></a></li>
 									<h2 class="hidden-xs">
-										<p><?php _e('搜索'); ?> - <span id="aw-search-type"></span>
+										<p><?php _e('Поиск'); ?> - <span id="aw-search-type"></span>
 										</p>
 									</h2>
 								</ul>
@@ -28,11 +28,11 @@
 								<div class="tab-pane active">
 									<div id="search_result"></div>
 
-									<!-- 加载更多内容 -->
+									<!-- Загрузить еще -->
 									<a class="aw-load-more-content" id="search_result_more" data-page="1">
-										<span><?php _e('更多'); ?>...</span>
+										<span><?php _e('Далее'); ?>...</span>
 									</a>
-									<!-- end 加载更多内容 -->
+									<!-- end  -->
 								</div>
 							</div>
 						</div>
