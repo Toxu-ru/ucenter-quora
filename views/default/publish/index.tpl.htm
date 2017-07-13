@@ -5,21 +5,21 @@
 		<div class="row">
 			<div class="aw-content-wrap clearfix">
 				<div class="col-sm-12 col-md-9 aw-main-content">
-					<!-- tab 切换 -->
+					<!-- tab  -->
 					<ul class="nav nav-tabs aw-nav-tabs active">
 						<?php if (check_extension_package('project') && get_setting('project_enabled') == 'Y' && $this->user_info['permission']['publish_project']) { ?>
-						<li><a href="project/publish/"><?php _e('活动'); ?></a></li>
+						<li><a href="project/publish/"><?php _e('Деятельность'); ?></a></li>
 						<?php } ?>
 						<?php if (check_extension_package('ticket') && get_setting('ticket_enabled') == 'Y' && $this->user_info['permission']['publish_ticket']) { ?>
-						<li><a href="ticket/publish/"><?php _e('工单'); ?></a></li>
+						<li><a href="ticket/publish/"><?php _e('Наряд'); ?></a></li>
 						<?php } ?>
 						<?php if ($this->user_info['permission']['publish_article']) { ?>
-						<li><a href="publish/article/"><?php _e('文章'); ?></a></li>
+						<li><a href="publish/article/"><?php _e('Статьи'); ?></a></li>
 						<?php } ?>
-						<li class="active"><a href="publish/"><?php _e('问题'); ?></a></li>
-						<h2 class="hidden-xs"><i class="icon icon-ask"></i> <?php _e('发起'); ?></h2>
+						<li class="active"><a href="publish/"><?php _e('Вопрос'); ?></a></li>
+						<h2 class="hidden-xs"><i class="icon icon-ask"></i> <?php _e('Задать вопрос'); ?></h2>
 					</ul>
-					<!-- end tab 切换 -->
+					<!-- end tab  -->
 					<form action="publish/ajax/<?php if ($this->question_info['question_id']) { ?>modify<?php } else { ?>publish<?php } ?>_question/" method="post" id="question_form" onsubmit="return false;">
 						<input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
 						<input type="hidden" name="attach_access_key" value="<?php echo $this->attach_access_key; ?>" />
@@ -27,19 +27,19 @@
 						<input type="hidden" name="ask_user_id" value="<?php echo $_POST['ask_user_id']; ?>" />
 						<?php if ($this->question_category_list) { ?>
 						<select name="category_id" class="collapse" id="category_id">
-							<option value="0">- <?php _e('请选择分类'); ?> -</option>
+							<option value="0">- <?php _e('Выберите'); ?> -</option>
 							<?php echo $this->question_category_list; ?>
 						</select>
 						<?php } ?>
 						<div class="aw-mod aw-mod-publish">
 							<div class="mod-body">
-								<h3><?php _e('问题标题'); ?>:</h3>
-								<!-- 问题标题 -->
+								<h3><?php _e('Сам вопрос'); ?></h3>
+								<!-- Название -->
 								<div class="aw-publish-title<?php if (!$this->question_category_list) { ?> active<?php } ?>">
 									<div>
-										<input type="text" placeholder="<?php _e('问题标题'); ?>..." name="question_content" id="question_contents" value="<?php echo $this->question_info['question_content']; ?>" class="form-control" />
+										<input type="text" placeholder="<?php _e('Название'); ?>..." name="question_content" id="question_contents" value="<?php echo $this->question_info['question_content']; ?>" class="form-control" />
 										<div class="aw-publish-suggest-question collapse">
-											<p class="text-color-999">你的问题可能已经有答案</p>
+											<p class="text-color-999">На ваш вопрос, возможно, уже есть ответ</p>
 											<ul class="aw-dropdown-list">
 											</ul>
 										</div>
@@ -47,15 +47,15 @@
 									<?php if ($this->question_category_list) { ?>
 									<div class="dropdown">
 										<div class="dropdown-toggle" data-toggle="dropdown">
-											<span id="aw-topic-tags-select" class="aw-hide-txt"><?php _e('选择分类'); ?></span>
+											<span id="aw-topic-tags-select" class="aw-hide-txt"><?php _e('Выбор категории'); ?></span>
 											<a href="javascript:;"><i class="icon icon-down"></i></a>
 										</div>
 									</div>
 									<?php } ?>
 								</div>
-								<!-- end 问题标题 -->
+								<!-- end  -->
 
-								<h3><?php _e('问题补充 (选填)'); ?>:</h3>
+								<h3><?php _e(' Опишите вопрос более подробно (опционально)'); ?>:</h3>
 								<div class="aw-mod aw-editor-box">
 									<div class="mod-head">
 										<div class="wmd-panel">
@@ -66,15 +66,15 @@
 										<span class="pull-right text-color-999" id="question_detail_message">&nbsp;</span>
 										<?php if (get_setting('upload_enable') == 'Y') { ?>
 										<div class="aw-upload-box">
-											<a class="btn btn-default">上传附件</a>
+											<a class="btn btn-default">Загрузить</a>
 											<div class="upload-container"></div>
-											<span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('允许'); ?> : <?php echo get_setting('allowed_upload_types'); ?></span>
+											<span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('разрешенные'); ?> : <?php echo get_setting('allowed_upload_types'); ?></span>
 										</div>
 										<?php } ?>
 									</div>
 								</div>
 								<?php if (!$this->question_info['question_id']) { ?>
-								<h3><?php _e('添加话题'); ?>:</h3>
+								<h3><?php _e('Добавить тему'); ?>:</h3>
 								<div class="aw-topic-bar" data-type="publish">
 									<div class="tag-bar clearfix">
 										<?php if ($_GET['topic_title']) { ?>
@@ -96,12 +96,12 @@
 										<?php } ?>
 										<?php } ?>
 
-										<span class="aw-edit-topic icon-inverse"><i class="icon icon-edit"></i> <?php _e('编辑话题'); ?></span>
+										<span class="aw-edit-topic icon-inverse"><i class="icon icon-edit"></i> <?php _e('Изменить тему'); ?></span>
 										</span>
 									</div>
 								</div>
 								<?php if ($this->recent_topics) { ?>
-								<h3><?php _e('最近话题'); ?>:</h3>
+								<h3><?php _e('Последние темы'); ?>:</h3>
 								<div class="aw-topic-bar">
 									<div class="topic-bar clearfix">
 										<?php foreach($this->recent_topics as $key => $val) { ?>
@@ -117,48 +117,48 @@
 								<?php } ?>
 								<?php if ($this->human_valid) { ?>
 								<div class="aw-auth-img clearfix">
-									<input class="form-control pull-right" type="text" name="seccode_verify" placeholder="验证码" />
+									<input class="form-control pull-right" type="text" name="seccode_verify" placeholder="Проверочный код" />
 									<em class="auth-img pull-right"><img src="" onclick="this.src = G_BASE_URL + '/account/captcha/' + Math.floor(Math.random() * 10000);" id="captcha"  /></em>
 								</div>
 								<?php } ?>
 							</div>
 							<div class="mod-footer clearfix">
-								<?php if (get_setting('integral_system_enabled') == 'Y') { ?><a href="integral/rule/" target="_blank">[<?php _e('积分规则'); ?>]</a><?php } ?>
+								<?php if (get_setting('integral_system_enabled') == 'Y') { ?><a href="integral/rule/" target="_blank">[<?php _e('Баллы'); ?>]</a><?php } ?>
 								<span class="aw-anonymity">
 									<?php if ($this->question_info['question_id'] AND ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'])) { ?>
 									<label><input type="checkbox" class="pull-left" value="1" name="do_delete" />
-										<?php _e('删除问题'); ?></label>
+										<?php _e('Удалить вопрос'); ?></label>
 									<?php } ?>
 									<?php if (!$this->question_info['question_id'] AND get_setting('anonymous_enable') == 'Y') { ?>
 									<label><input type="checkbox" class="pull-left" value="1" name="anonymous" />
-										<?php _e('匿名'); ?></label>
+										<?php _e('Анонимно'); ?></label>
 									<?php } ?>
 
 								</span>
-								<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发起'); ?></a>
+								<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('Задать'); ?></a>
 							</div>
 						</div>
 					</form>
 				</div>
-				<!-- 侧边栏 -->
+				<!-- Боковая панель -->
 				<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs">
-					<!-- 问题发起指南 -->
+				 
 					<div class="aw-mod publish-help">
 						<div class="mod-head">
-							<h3><?php _e('问题发起指南'); ?></h3>
+							<h3><?php _e('Правила'); ?></h3>
 						</div>
 						<div class="mod-body">
-							<p><b>• <?php _e('问题标题'); ?>:</b> <?php _e('请用准确的语言描述您发布的问题思想'); ?></p>
-							<p><b>• <?php _e('问题补充'); ?>:</b> <?php _e('详细补充您的问题内容, 并提供一些相关的素材以供参与者更多的了解您所要问题的主题思想'); ?></p>
-							<p><b>• <?php _e('选择话题'); ?>:</b> <?php _e('选择一个或者多个合适的话题, 让您发布的问题得到更多有相同兴趣的人参与. 所有人可以在您发布问题之后添加和编辑该问题所属的话题'); ?></p>
+							<p><b>• <?php _e('Вопрос'); ?>:</b> <?php _e('должен начинаться с Большой буквы'); ?></p>
+							<p><b>• <?php _e('Вопрос'); ?>:</b> <?php _e('должен заканчиваться знаком вопроса (?)'); ?></p>
+							</p>
 							<?php if (get_setting('integral_system_enabled') == 'Y') { ?>
-							<p><b>• <?php _e('关于积分'); ?>：</b> <?php _e('发起一个问题会消耗您 %s 个积分', -get_setting('integral_system_config_new_question')); ?>, <?php if (get_setting('integral_system_config_answer_change_source') == 'Y') { _e('每多一个回复你将获得 %s 个积分的奖励', -get_setting('integral_system_config_new_answer')); ?> ,<?php } _e('为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能'); ?>.</p>
+							<p><b>• <?php _e('Вопрос'); ?>：</b> <?php _e('За заданный вопрос вы потратите: %s баллов', -get_setting('integral_system_config_new_question')); ?>, <?php if (get_setting('integral_system_config_answer_change_source') == 'Y') { _e('За каждый ответ вы будете вознаграждены: %s баллами', -get_setting('integral_system_config_new_answer')); ?> ,<?php } _e('Для вашего удобства, в момент запуска этого вопроса мы хотим, чтобы иметь возможность лучше описать вашу проблему и в многофункциональной функции поиска на сайте'); ?>.</p>
 							<?php } ?>
 						</div>
 					</div>
-					<!-- end 问题发起指南 -->
+			 
 				</div>
-				<!-- end 侧边栏 -->
+				<!-- end  -->
 			</div>
 		</div>
 	</div>
