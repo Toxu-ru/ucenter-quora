@@ -20,3 +20,6 @@ WeCenter - система вопросов и ответов. Дневники, 
  4. Обнобление js - составляющих и т.д.
  
  <img src="http://toxu.ru/uploads/default/original/2X/4/4f37b8b22de7be70f30520c8fb92739a6a418a38.jpg" width="690" height="352">
+ 
+ 
+При поддержки:  [Toxu - вопросы и ответы](https://toxu.ru) Q&A сисетма
