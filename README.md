@@ -22,4 +22,4 @@ WeCenter - система вопросов и ответов. Дневники, 
  <img src="http://toxu.ru/uploads/default/original/2X/4/4f37b8b22de7be70f30520c8fb92739a6a418a38.jpg" width="690" height="352">
  
  
-При поддержки:  [Toxu - вопросы и ответы](https://toxu.ru) Q&A сисетма
+При поддержки:  [Toxu - обмен знаниями и опытом](https://toxu.ru) и Q&A сисетма
